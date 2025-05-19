@@ -27,6 +27,11 @@
           <%= link_to "ログイン", new_customer_session_path %>
         <% end %>
     </header>
+
+    <% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
+
     <%= yield %>
     <footer>
     </footer>
