@@ -10,7 +10,7 @@ class Public::AddressesController < ApplicationController
     # customer = Customer.find(current_user.id)
     # @address = customer.address
 
-    @addresses = current_user.address
+    @addresses = current_user.addresses
   end
 
   def edit
