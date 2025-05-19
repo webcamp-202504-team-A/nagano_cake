@@ -1,0 +1,36 @@
+<h2>会員一覧</h2>
+
+<table>
+    <thead>
+        <tr>
+          <th>会員ID</th>
+          <th style="text-decoration: underline;">氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+            <td>
+              <%= link_to "#{customer.last_name}#{customer.first_name}", admin_customer_path(customer) , style: "text-decoration: underline;" %>
+            </td>
+            <td><%= customer.email %></td>
+            <td>
+               <% if customer.is_active %>
+                 <span style="color: green;">有効</span>
+               <% else %>
+                 <span style="color: gray;">退会</span>
+               <% end %>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+<div>
+    <%= paginate @customers %>
+</div>
+
+<%# TODO: 最終リリース時には testuser を削除すること %>
+<%# Customer.where("email LIKE ?", "testuser%@example.com").destroy_all %>
