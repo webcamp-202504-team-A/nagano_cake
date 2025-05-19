@@ -6,11 +6,11 @@ class Public::AddressesController < ApplicationController
 
   def index
     @new_address = Address.new
-
+    
     # customer = Customer.find(current_user.id)
     # @address = customer.address
 
-    # @address = current_user.address
+    @addresses = current_user.address
   end
 
   def edit
