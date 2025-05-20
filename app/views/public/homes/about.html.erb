@@ -1,2 +1,1841 @@
 
 <h1>Aboutページ<h1>
+
+<%# 後で消す ここから %>
+<!-- prettyprint -->
+<style>
+  pre.prettyprint {
+    width: 100% !important;
+    background-color: #202020 !important;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: Consolas, SFMono-Regular, Menlo, Monaco, "Liberation Mono", "Courier New", monospace;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+</style>
+<!-- end prettyprint -->
+
+<!-- ユニークスタイル -->
+<style>
+  section {
+    padding: 50px 0;
+    background: #f8f8f8;
+  }
+  section:nth-child(even) {
+    background: rgb(236, 236, 236);
+  }
+  .title___ {
+    font-weight: bold;
+    font-size: 30px;
+    border-bottom: 4px solid #000;
+    margin-bottom: 40px;
+  }
+  .title1___ {
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .content___ {
+    margin-bottom: 40px;
+  }
+  .other___ {
+    border: 1px solid #000;
+    padding: 1em;
+    margin-top: 40px;
+  }
+  .attention___ {
+    border: 2px solid red;
+    padding: 2em;
+  }
+  .attention___ > * {
+    padding-left: 1.3em;
+    position: relative;
+  }
+  .attention___ > *:not(:first-child) {
+    margin-top: 10px;
+  }
+  .attention___ > *::before {
+    content: "※";
+    display: block;
+    color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .not___ {
+    text-decoration: line-through;
+  }
+  .this-inner {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+<!-- end ユニークスタイル -->
+
+<!-- ページナビゲーション -->
+<style>
+  #nav___ {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+  }
+  #navTrigger___ {
+    background: gray;
+    color: #fff;
+    width: 10em;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding: 0 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .navLinks___wrap {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    height: 0;
+  }
+  #navLinks___ {
+    background: #fff;
+    padding: 1em;
+    transform: translateX(100%);
+  }
+  #nav___.is-active #navLinks___ {
+    transform: none;
+  }
+  #nav___.is-active .navLinks___wrap {
+    height: auto;
+  }
+  #navLinks___ a {
+    text-decoration: underline;
+  }
+</style>
+<!-- end ページナビゲーション -->
+
+<main>
+  <!-- PC/SP反映限定 -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">PC/SP反映限定</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="u-pc">🦀</div>
+        <div class="u-sp">🦐</div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-pc&quot;&gt;🦀&lt;/div&gt;
+&lt;div class=&quot;u-sp&quot;&gt;🦐&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>.u-pc: PCの時に表示する。</p>
+        <p>.u-sp: SPの時に表示する。</p>
+        <p>br.u-sp とかで使ったりする。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end PC/SP反映限定 -->
+
+  <!-- マージン -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">マージン</div>
+
+      <!-- コンテント -->
+      <div class="content___">
+        <div class="u-ml-40" style="background-color: lightblue">u-ml-40</div>
+
+        <div class="u-pc:mt-40" style="background-color: peachpuff">u-pc:mt-40</div>
+
+        <div class="u-sp:mt-10" style="background-color: lightblue">u-sp:mt-10</div>
+
+        <div class="u-pc:vert-60 u-sp:vert-30">
+          <p style="background-color: peachpuff">子要素、縦、等間隔</p>
+          <p style="background-color: peachpuff">子要素、縦、等間隔</p>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-ml-40&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;u-pc:mt-40&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;u-sp:mt-10&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;u-pc:u-vert-60 u-sp:u-vert-30&quot;&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>値は0~100(5の倍数)。</p>
+        <p>mt, mr, mb, ml がある。それぞれ 上、右、下、左</p>
+        <p>mX がある。左右にマージンをつける。</p>
+        <p>「pc:m~」はpc時のみ適用。</p>
+        <p>「sp:m~」はsp時のみ適用。</p>
+        <p>mtなどの後に「-auto」をつけると、値はautoとなる。.u-mt-auto</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end マージン -->
+
+  <!-- パディング -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">パディング</div>
+
+      <!-- コンテント -->
+      <div class="content___">
+        <div class="u-pl-40" style="background-color: lightblue"><span class="u-bd">u-pl-40</span></div>
+
+        <div class="u-pc:pt-40" style="background-color: peachpuff"><span class="u-bd">u-pc:pt-40</span></div>
+
+        <div class="u-sp:t-10" style="background-color: lightblue"><span class="u-bd">u-sp:t-10</span></div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-pl-40&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;u-pc:pt-40&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;u-sp:pt-10&quot;&gt;&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>仕様はほぼ上のマージンスタイルと同じ。</p>
+        <p>追加: .u-p-40で上下左右に40px</p>
+        <p>追加: .u-pY-40で上下に40px</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end パディング -->
+
+  <!-- フォントサイズ -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">フォントサイズ</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="elm___">
+          <div class="u-fz-12">12</div>
+          <div class="u-fz-14">14</div>
+          <div class="u-fz-16">16</div>
+          <div class="u-fz-18">18</div>
+          <div class="u-fz-20">20</div>
+          <div class="u-fz-22">22</div>
+          <div class="u-fz-24">24</div>
+        </div>
+
+        <div class="elm___">
+          <div class="u-pc:fz-24">pc 24</div>
+        </div>
+
+        <div class="elm___">
+          <div class="u-sp:fz-24">sp 24</div>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-fz-24&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;u-pc:fz-24&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;u-sp:fz-24&quot;&gt;&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>10 ~ 36px相当 まで対応。</p>
+        <p>「pc:fz-~」はpc時のみ適用。</p>
+        <p>「sp:fz-~」はsp時のみ適用。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end フォントサイズ -->
+
+  <!-- フォントウェイト・スタイル -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">フォントウェイト・スタイル</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="elm___">
+          <div class="u-fw-b">fw-b</div>
+        </div>
+        <div class="elm___">
+          <div class="u-fw-n">fw-n</div>
+        </div>
+        <div class="elm___">
+          <div class="u-fs-i">fs-i</div>
+        </div>
+        <div class="elm___">
+          <div class="u-fs-n">fs-n</div>
+        </div>
+        <div class="elm___">
+          <div class="u-nowrap">u-nowrap折り返さない</div>
+        </div>
+        <div class="elm___">
+          <div class="u-va-i">u-バーティカルアラインinital初期化</div>
+        </div>
+        <div class="elm___">
+          <div class="u-va-top">u-バーティカルアラインtop初期化</div>
+        </div>
+        <div class="elm___">
+          <div class="u-va-bottom">u-バーティカルアラインbottom初期化</div>
+        </div>
+        <div class="elm___">
+          <div class="u-va-middle">u-バーティカルアラインmiddle初期化</div>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-fw-b&quot;&gt;fw-b&lt;/div&gt;
+&lt;div class=&quot;u-fw-n&quot;&gt;fw-n&lt;/div&gt;
+&lt;div class=&quot;u-fs-i&quot;&gt;fs-i&lt;/div&gt;
+&lt;div class=&quot;u-fs-n&quot;&gt;fs-n&lt;/div&gt;
+&lt;div class=&quot;u-nowrap&quot;&gt;u-nowrap折り返さない&lt;/div&gt;
+&lt;div class=&quot;u-va-i&quot;&gt;u-バーティカルアラインinital初期化&lt;/div&gt;
+&lt;div class=&quot;u-va-top&quot;&gt;u-バーティカルアラインtop初期化&lt;/div&gt;
+&lt;div class=&quot;u-va-bottom&quot;&gt;u-バーティカルアラインbottom初期化&lt;/div&gt;
+&lt;div class=&quot;u-va-middle&quot;&gt;u-バーティカルアラインmiddle初期化&lt;/div&gt;
+</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>bタグ、uタグ、sタグなどを使っても良い。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end フォントウェイト・スタイル -->
+
+  <!-- テキスト配置 -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">テキスト配置</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="elm___">
+          <div class="u-ta-c">ta-c</div>
+        </div>
+        <div class="elm___">
+          <div class="u-ta-l">ta-l</div>
+        </div>
+        <div class="elm___">
+          <div class="u-ta-r">ta-r</div>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-ta-c&quot;&gt;ta-c&lt;/div&gt;
+
+&lt;div class=&quot;u-ta-l&quot;&gt;ta-l&lt;/div&gt;
+
+&lt;div class=&quot;u-ta-r&quot;&gt;ta-r&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>マージンと同じように「u-pc:」「u-sp:」を前方につけることでPC/SPのみ反映する。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end テキスト配置 -->
+
+  <!-- テキスト縦書き -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">テキスト縦書き</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-30">
+        <p class="u-text-tate">テキスト、イーグルス</p>
+        <p class="u-pc:text-tate">2025年1月31日</p>
+        <p class="u-text-tate">２０２５年１月３１日</p>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;p class=&quot;u-text-tate&quot;&gt;テキスト、イーグルス&lt;/p&gt;
+&lt;p class=&quot;u-pc:text-tate&quot;&gt;2025年1月31日&lt;/p&gt;
+&lt;p class=&quot;u-text-tate&quot;&gt;２０２５年１月３１日&lt;/p&gt;
+</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>「u-pc:」「u-sp:」を前方につけることでPC/SPのみ反映する。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end テキスト縦書き -->
+
+  <!-- 背景色 -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">背景色</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="u-bg-white">u-bg-white</div>
+        <div class="u-bg-black">u-bg-black</div>
+        <div class="u-bg-gray">u-bg-gray</div>
+        <div class="u-bg-gray1">u-bg-gray1</div>
+        <div class="u-bg-red">u-bg-red</div>
+        <div class="u-bg-yellow">u-bg-yellow</div>
+        <div class="u-bg-beige">u-bg-beige</div>
+        <div class="u-bg-pink">u-bg-pink</div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-bg-white&quot;&gt;u-bg-white&lt;/div&gt;
+&lt;div class=&quot;u-bg-black&quot;&gt;u-bg-black&lt;/div&gt;
+&lt;div class=&quot;u-bg-gray&quot;&gt;u-bg-gray&lt;/div&gt;
+&lt;div class=&quot;u-bg-gray1&quot;&gt;u-bg-gray1&lt;/div&gt;
+&lt;div class=&quot;u-bg-red&quot;&gt;u-bg-red&lt;/div&gt;
+&lt;div class=&quot;u-bg-yellow&quot;&gt;u-bg-yellow&lt;/div&gt;
+&lt;div class=&quot;u-bg-beige&quot;&gt;u-bg-beige&lt;/div&gt;
+&lt;div class=&quot;u-bg-pink&quot;&gt;u-bg-pink&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end 背景色 -->
+
+  <!-- 文字色 -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">文字色</div>
+
+      <!-- コンテント -->
+      <div class="content___">
+        <div class="elm___">
+          <div class="u-c-white">u-c-white</div>
+          <div class="u-c-black">u-c-black</div>
+          <div class="u-c-gray">u-c-gray</div>
+          <div class="u-c-gray1">u-c-gray1</div>
+          <div class="u-c-red">u-c-red</div>
+          <div class="u-c-yellow">u-c-yellow</div>
+          <div class="u-c-beige">u-c-beige</div>
+          <div class="u-c-pink">u-c-pink</div>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-c-white&quot;&gt;u-c-white&lt;/div&gt;
+&lt;div class=&quot;u-c-black&quot;&gt;u-c-black&lt;/div&gt;
+&lt;div class=&quot;u-c-gray&quot;&gt;u-c-gray&lt;/div&gt;
+&lt;div class=&quot;u-c-gray1&quot;&gt;u-c-gray1&lt;/div&gt;
+&lt;div class=&quot;u-c-red&quot;&gt;u-c-red&lt;/div&gt;
+&lt;div class=&quot;u-c-yellow&quot;&gt;u-c-yellow&lt;/div&gt;
+&lt;div class=&quot;u-c-beige&quot;&gt;u-c-beige&lt;/div&gt;
+&lt;div class=&quot;u-c-pink&quot;&gt;u-c-pink&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___"></div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end 文字色 -->
+
+  <!-- ボーダー -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">ボーダー</div>
+
+      <!-- サイズ -->
+      <article class="u-vert-40">
+        <h2 class="title1___">ボーダー サイズ</h2>
+
+        <!-- サンプル -->
+        <div class="u-vert-20">
+          <div class="u-bd">ボーダー</div>
+
+          <div class="u-bd-none">ボーダー無し</div>
+
+          <div class="u-bd-1">ボーダー 1px</div>
+
+          <div class="u-bd-2">ボーダー 2px</div>
+
+          <div class="u-bd-3">ボーダー 3px</div>
+
+          <div class="u-bd-4">ボーダー 4px</div>
+
+          <div class="u-bd-5">ボーダー 5px</div>
+
+          <div class="u-bd-6">ボーダー 6px</div>
+
+          <div class="u-bd-7">ボーダー 7px</div>
+
+          <div class="u-bd-8">ボーダー 8px</div>
+
+          <div class="u-bd-9">ボーダー 9px</div>
+
+          <div class="u-bd-10">ボーダー 10px</div>
+        </div>
+        <!-- end サンプル -->
+
+        <!-- コード -->
+        <figure class="code___">
+          <pre class="prettyprint">
+&lt;div class=&quot;u-bd&quot;&gt;ボーダー&lt;/div&gt;
+
+&lt;div class=&quot;u-bd-none&quot;&gt;ボーダー無し&lt;/div&gt;
+
+&lt;div class=&quot;u-bd-1&quot;&gt;ボーダー 1px&lt;/div&gt;
+
+~
+
+&lt;div class=&quot;u-bd-10&quot;&gt;ボーダー 10px&lt;/div&gt;</pre
+          >
+        </figure>
+        <!-- end コード -->
+
+        <!-- 説明 -->
+        <ul class="other___">
+          <li>タグに依存していないスタイルなので自由にタグを当てても構いません。</li>
+          <li>先頭に .pc:, .sp: をつけると、それぞれpc時・sp時のみの反映となります。</li>
+          <li>bd は BorDer の略。</li>
+          <li>数値は1~10まで。</li>
+        </ul>
+        <!-- 説明 -->
+      </article>
+
+      <!-- 方位 -->
+      <article class="u-mt-60 u-vert-40">
+        <h2 class="title1___">ボーダー 方位</h2>
+
+        <!-- サンプル -->
+        <div class="u-vert-20">
+          <div class="u-bdr">ボーダー右</div>
+
+          <div class="u-bdl">ボーダー左</div>
+
+          <div class="u-bdt">ボーダー上</div>
+
+          <div class="u-bdb">ボーダー下</div>
+
+          <div class="u-bdl-10">ボーダー左10px</div>
+        </div>
+        <!-- end サンプル -->
+
+        <!-- コード -->
+        <figure class="code___">
+          <pre class="prettyprint">
+&lt;div class=&quot;u-bdr&quot;&gt;ボーダー右&lt;/div&gt;
+
+&lt;div class=&quot;u-bdl&quot;&gt;ボーダー左&lt;/div&gt;
+
+&lt;div class=&quot;u-bdt&quot;&gt;ボーダー上&lt;/div&gt;
+
+&lt;div class=&quot;u-bdb&quot;&gt;ボーダー下&lt;/div&gt;
+
+&lt;div class=&quot;u-bdl-10&quot;&gt;ボーダー左10px&lt;/div&gt;</pre
+          >
+        </figure>
+        <!-- end コード -->
+
+        <!-- 説明 -->
+        <ul class="other___">
+          <li>.bd と仕様は同じです。方向を限定した感じ。</li>
+        </ul>
+        <!-- 説明 -->
+      </article>
+
+      <!-- 色 -->
+      <article class="u-mt-60 u-vert-40">
+        <h2 class="title1___">ボーダー 色</h2>
+
+        <!-- サンプル -->
+        <div class="u-vert-20">
+          <div class="u-bd u-bdc-white">u-bdc-white</div>
+          <div class="u-bd u-bdc-black">u-bdc-black</div>
+          <div class="u-bd u-bdc-gray">u-bdc-gray</div>
+          <div class="u-bd u-bdc-gray1">u-bdc-gray1</div>
+          <div class="u-bd u-bdc-red">u-bdc-red</div>
+          <div class="u-bd u-bdc-yellow">u-bdc-yellow</div>
+          <div class="u-bd u-bdc-beige">u-bdc-beige</div>
+          <div class="u-bd u-bdc-pink">u-bdc-pink</div>
+        </div>
+        <!-- end サンプル -->
+
+        <!-- コード -->
+        <figure class="code___">
+          <pre class="prettyprint">
+&lt;div class=&quot;u-bd u-bdc-white&quot;&gt;u-bdc-white&lt;/div&gt;
+&lt;div class=&quot;u-bd u-bdc-black&quot;&gt;u-bdc-black&lt;/div&gt;
+&lt;div class=&quot;u-bd u-bdc-gray&quot;&gt;u-bdc-gray&lt;/div&gt;
+&lt;div class=&quot;u-bd u-bdc-gray1&quot;&gt;u-bdc-gray1&lt;/div&gt;
+&lt;div class=&quot;u-bd u-bdc-red&quot;&gt;u-bdc-red&lt;/div&gt;
+&lt;div class=&quot;u-bd u-bdc-yellow&quot;&gt;u-bdc-yellow&lt;/div&gt;
+&lt;div class=&quot;u-bd u-bdc-beige&quot;&gt;u-bdc-beige&lt;/div&gt;
+&lt;div class=&quot;u-bd u-bdc-pink&quot;&gt;u-bdc-pink&lt;/div&gt;</pre
+          >
+        </figure>
+        <!-- end コード -->
+
+        <!-- 説明 -->
+        <ul class="other___">
+          <li>.u-bd系と合わせて使うと良い。</li>
+        </ul>
+        <!-- 説明 -->
+      </article>
+    </div>
+  </section>
+  <!-- end ボーダー -->
+
+  <!-- ダミー画像 -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">ダミー画像</div>
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>ダミー画像は<a href="https://placehold.jp/" target="_blank" class="u-link1">こちらのサイト</a>がおすすめ。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end ダミー画像 -->
+
+  <!-- 画像タグ -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">画像タグ</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-30">
+        <figure class="u-fig">
+          <img src="https://placehold.jp/400x250.png" alt="" width="" height="" loading="lazy" />
+          <figcaption>キャプションテキスト</figcaption>
+        </figure>
+
+        <figure class="u-fig pc:opt-c">
+          <div class="u-fig-inner">
+            <img src="https://placehold.jp/400x250.png" alt="" width="" height="" loading="lazy" />
+            <p class="u-attn">デフォルトで左よせ</p>
+            <p class="u-ta-c">
+              <span class="u-attn">u-attnを中央に揃えるときは、u-ta-c内に置き、<br />インライン要素にu-attnを記述する</span>
+            </p>
+          </div>
+        </figure>
+
+        <figure class="u-fig opt-full">
+          <img src="https://placehold.jp/100x10.png" alt="" width="" height="" loading="lazy" />
+        </figure>
+
+        <figure class="u-fig">
+          <picture>
+            <source media="(min-width:768px)" srcset="https://placehold.jp/400x250.png" width="" height="" />
+            <source media="(max-width:767px)" srcset="https://placehold.jp/400x800.png" width="" height="" />
+            <img src="/built/assets/common/no_image.svg" alt="" />
+          </picture>
+        </figure>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;figure class=&quot;u-fig&quot;&gt;
+&lt;img src=&quot;&quot; alt=&quot;&quot; width=&quot;&quot; height=&quot;&quot; loading=&quot;lazy&quot; /&gt;
+&lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure class=&quot;u-fig pc:opt-c&quot;&gt;
+&lt;div class=&quot;u-fig-inner&quot;&gt;
+&lt;img src=&quot;&quot; alt=&quot;&quot; width=&quot;&quot; height=&quot;&quot; loading=&quot;lazy&quot; /&gt;
+&lt;p class=&quot;u-attn&quot;&gt;デフォルトで左よせ&lt;/p&gt;
+&lt;p class=&quot;u-ta-c&quot;&gt;
+  &lt;span class=&quot;u-attn&quot;&gt;u-attnを中央に揃えるときは、u-ta-c内に置き、&lt;br /&gt;インライン要素にu-attnを記述する&lt;/span&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/figure&gt;
+
+&lt;figure class=&quot;u-fig opt-full&quot;&gt;
+&lt;img src=&quot;&quot; alt=&quot;&quot; width=&quot;&quot; height=&quot;&quot; loading=&quot;lazy&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;figure class=&quot;u-fig&quot;&gt;
+&lt;picture&gt;
+&lt;source media=&quot;(min-width:768px)&quot; srcset=&quot;&quot; width=&quot;&quot; height=&quot;&quot; /&gt;
+&lt;source media=&quot;(max-width:767px)&quot; srcset=&quot;&quot; width=&quot;&quot; height=&quot;&quot; /&gt;
+&lt;img src=&quot;/built/assets/common/no_image.svg&quot; alt=&quot;&quot; /&gt;
+&lt;/picture&gt;
+&lt;/figure&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end 画像タグ -->
+
+  <!-- 接頭(注意やリストとか) -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">接頭(注意やリストとか)</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-30">
+        <p class="u-attn">テキスト</p>
+
+        <div class="u-attn-list">
+          <p>ンンンンン</p>
+          <p>ンンンンン</p>
+        </div>
+
+        <ul class="u-list">
+          <li>テキスト</li>
+          <li>テキスト</li>
+          <li>テキスト</li>
+        </ul>
+
+        <ul class="u-list-num">
+          <li>テキスト</li>
+          <li>テキスト</li>
+          <li>テキスト</li>
+        </ul>
+
+        <p class="u-ind">
+          <span style="color: cyan">★</span
+          >テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+
+        <div class="u-ind-list">
+          <p>★テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          <p>※テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;p class=&quot;u-attn&quot;&gt;&lt;/p&gt;
+
+&lt;div class=&quot;u-attn-list&quot;&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ul class=&quot;u-list&quot;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class=&quot;u-list-num&quot;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p class=&quot;u-ind&quot;&gt;&lt;span class=&quot;u-c-色&quot;&gt;★&lt;/span&gt;テキス...&lt;/p&gt;
+
+&lt;div class=&quot;u-ind-list&quot;&gt;
+&lt;p&gt;★テキス...&lt;/p&gt;
+&lt;p&gt;※テキス...&lt;/p&gt;
+&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>.u-attn系: 赤米が接頭文字としてつく。</p>
+        <p>.u-list: ・が接頭文字としてつく。</p>
+        <p>.u-ind系: 一文字分字下げする。=> 好きな接頭文字を当てられる。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end 接頭(注意やリストとか) -->
+
+  <!-- レイアアウト -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">レイアアウト</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-30">
+        <div class="u-pc:col2-50 u-sp:col2-10">
+          <div style="background-color: peachpuff">子要素</div>
+          <div style="background-color: peachpuff">子要素</div>
+          <div style="background-color: peachpuff">子要素</div>
+        </div>
+
+        <div class="u-col3-10">
+          <div style="background-color: lightcyan">子要素</div>
+          <div style="background-color: lightcyan">子要素</div>
+          <div style="background-color: lightcyan">子要素</div>
+          <div style="background-color: lightcyan">子要素</div>
+        </div>
+
+        <div class="u-col4-20">
+          <figure class="fig">
+            <img src="https://placehold.jp/400x250.png" alt="" width="" height="" loading="lazy" />
+            <figcaption>キャプションテキスト</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="https://placehold.jp/400x250.png" alt="" width="" height="" loading="lazy" />
+            <figcaption>キャプションテキスト</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="https://placehold.jp/400x250.png" alt="" width="" height="" loading="lazy" />
+            <figcaption>キャプションテキスト</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="https://placehold.jp/400x250.png" alt="" width="" height="" loading="lazy" />
+            <figcaption>キャプションテキスト</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="https://placehold.jp/400x250.png" alt="" width="" height="" loading="lazy" />
+            <figcaption>キャプションテキスト</figcaption>
+          </figure>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-pc:col2-50 u-sp:col2-10&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-col3-10&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-col4-20&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>.col*-○の「○」は5の倍数(100まで)</p>
+        <p>「u-pc:」「u-sp:」を接頭につけると、それぞれPC時・SP時に反映されます。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end レイアアウト -->
+
+  <!-- ディスプレイ -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">ディスプレイ</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-30">
+        <div class="u-d-b">🦀block要素</div>
+
+        <div class="u-d-i">🦞inline要素</div>
+
+        <div class="u-d-ib">🦐inline-block要素</div>
+
+        <div class="u-d-c">🐙contents要素</div>
+
+        <div class="u-d-if">🦑inline-flex要素</div>
+
+        <div class="u-sp:d-n">🦩sp時にnone要素</div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-d-b&quot;&gt;🦀block要素&lt;/div&gt;
+
+&lt;div class=&quot;u-d-i&quot;&gt;🦞inline要素&lt;/div&gt;
+
+&lt;div class=&quot;u-d-ib&quot;&gt;🦐inline-block要素&lt;/div&gt;
+
+&lt;div class=&quot;u-d-c&quot;&gt;🐙contents要素&lt;/div&gt;
+
+&lt;div class=&quot;u-d-if&quot;&gt;🦑inline-flex要素&lt;/div&gt;
+
+&lt;div class=&quot;u-sp:d-n&quot;&gt;🦩sp時にnone要素&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>flex要素は下を参照。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end ディスプレイ -->
+
+  <!-- ディスプレイフレックス -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">ディスプレイフレックス</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-30">
+        <div class="u-d-f">
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: lightblue">🥓</div>
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: peachpuff">🥓</div>
+        </div>
+
+        <div class="u-d-f opt-center-x u-pc:gap-50 u-sp:gap-20">
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: lightblue">🥓</div>
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: peachpuff">🥓</div>
+        </div>
+
+        <div class="u-d-f opt-center-y">
+          <div style="font-size: 50px; text-align: center; line-height: 1; background-color: lightblue">🥓</div>
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: peachpuff">🥓</div>
+        </div>
+
+        <div class="u-d-f opt-even">
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: lightblue">🥓</div>
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: peachpuff">🥓</div>
+        </div>
+
+        <div class="u-pc:d-f pc:opt-ratio-1:9">
+          <div style="font-size: 50px; text-align: center; line-height: 1; background-color: lightblue">🥓</div>
+          <div style="font-size: 128px; text-align: center; line-height: 1; background-color: peachpuff">🥓</div>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-d-f&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-d-f opt-center-x u-pc:gap-50 u-sp:gap-20&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-d-f opt-center-y&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-d-f opt-even&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-pc:d-f pc:opt-ratio-1:9&quot;&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>display:flex;要素になる</p>
+        <p>.u-gap-⚪︎で子要素間に余白ができる。⚪︎は0~100の5の倍数。</p>
+        <p>.opt-center-x, .opt-center-y, .opt-even はそれぞれ、水平方向中央揃え、垂直方向中央揃え、水平方向等間隔。</p>
+        <p>.opt-ratio- は 1:9 ~ 9:1 まである</p>
+        <p>.u-d-f>.u-d-fs-0でシュリンクを0、.u-d-f>.u-d-fs-1でシュリンクを1にできる。0だと縮めるのをキャンセルする。= 要素が自動的に延び縮みするのを防ぐのに使う。</p>
+        <p>.u-d-f>.u-d-fg-0でグロウを0、.u-d-f>.u-d-fg-1でグロウを1にできる。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end ディスプレイフレックス -->
+
+  <!-- タイトル -->
+  <section style="background-color: white;">
+    <div class="this-inner">
+      <div class="title___">タイトル</div>
+
+      <div class="u-vert-70">
+        <article>
+          <!-- コンテント -->
+          <div class="content___ u-vert-30">
+            <h1 class="u-title1">About 56</h1>
+            <h2 class="u-title2">新着商品 32</h2>
+            <h2 class="u-title3">
+              <span>新規会員登録 28</span>
+            </h2>
+            <h3 class="u-title4">
+              <span>会員の方はこちらからログイン 20</span>
+            </h3>
+            <h3 class="u-title5">
+              <span>支払い方法 20</span>
+            </h3>
+            <h3 class="u-title6">
+              <span>商品名 16</span>
+            </h3>
+          </div>
+          <!-- end コンテント -->
+
+          <!-- コード -->
+          <figure class="code___">
+            <pre class="prettyprint">&lt;h1 class=&quot;u-title1&quot;&gt;About&lt;/h1&gt;
+&lt;h2 class=&quot;u-title2&quot;&gt;新着商品&lt;/h2&gt;
+&lt;h2 class=&quot;u-title3&quot;&gt;
+  &lt;span&gt;新規会員登録&lt;/span&gt;
+&lt;/h2&gt;
+&lt;h3 class=&quot;u-title4&quot;&gt;
+  &lt;span&gt;会員の方はこちらからログイン &lt;/span&gt;
+&lt;/h3&gt;
+&lt;h3 class=&quot;u-title5&quot;&gt;
+  &lt;span&gt;支払い方法&lt;/span&gt;
+&lt;/h3&gt;
+&lt;h3 class=&quot;u-title6&quot;&gt;
+  &lt;span&gt;商品名&lt;/span&gt;
+&lt;/h3&gt;</pre
+            >
+          </figure>
+          <!-- end コード -->
+        </article>
+      </div>
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>titileクラスの数字に序列の意味はありません。強いて言えば作った順です。</p>
+        <p>タイトルスタイル系はタグの種類に依存していません。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end タイトル -->
+
+  <!-- ボタン -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">ボタン</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-60">
+        <!-- 基本 -->
+        <div class="u-vert-10">
+          <div class="elm___">
+            <div class="u-btn-wrapper">
+              <a href="" rel="noopener noreferrer" target="_blank" class="u-btn">ボタン</a>
+              <a href="" class="u-btn opt-full">幅フル</a>
+              <a href="" class="u-btn opt-inactive">グレーアウト</a>
+              <a href="" class="u-btn opt-arrow">矢印</a>
+              <a href="" class="u-btn opt-arrow-down">下矢印</a>
+              <a href="" class="u-btn opt-arrow-up">上矢印</a>
+              <a href="" class="u-btn opt-ex" target="_blank">外部リンク</a>
+              <a href="" class="u-btn opt-pdf" target="_blank">pdfリンク</a>
+            </div>
+          </div>
+
+          <figure class="code___">
+            <pre class="prettyprint">
+&lt;div class=&quot;u-btn-wrapper&quot;&gt;
+&lt;a href=&quot;&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; class=&quot;u-btn&quot;&gt;ボタン&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn opt-full&quot;&gt;幅フル&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn opt-inactive&quot;&gt;グレーアウト&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn opt-arrow&quot;&gt;矢印&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn opt-arrow-down&quot;&gt;下矢印&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn opt-arrow-up&quot;&gt;上矢印&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn opt-ex&quot; target=&quot;_blank&quot;&gt;外部リンク&lt;/a&gt;
+&lt;/div&gt;</pre
+            >
+          </figure>
+        </div>
+        <!-- end 基本 -->
+
+        <!-- 並び -->
+        <div class="u-vert-10">
+          <div class="u-btn-wrapper opt-left">
+            <a href="" class="u-btn">左</a>
+          </div>
+
+          <div class="u-btn-wrapper pc:opt-right">
+            <a href="" class="u-btn">パソコンの時右</a>
+          </div>
+
+          <div class="u-btn-wrapper opt-col2">
+            <a href="" class="u-btn">２カラム</a>
+            <a href="" class="u-btn">２カラム</a>
+          </div>
+
+          <div class="u-btn-wrapper opt-even">
+            <a href="" class="u-btn">等分</a>
+            <a href="" class="u-btn">等分</a>
+            <a href="" class="u-btn">等分</a>
+          </div>
+
+          <!-- コード -->
+          <figure class="code___">
+            <pre class="prettyprint">
+&lt;div class=&quot;u-btn-wrapper opt-left&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn&quot;&gt;左&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-btn-wrapper pc:opt-right&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn&quot;&gt;パソコンの時右&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-btn-wrapper opt-col2&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn&quot;&gt;２カラム&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn&quot;&gt;２カラム&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-btn-wrapper opt-even&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn&quot;&gt;等分&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn&quot;&gt;等分&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn&quot;&gt;等分&lt;/a&gt;
+&lt;/div&gt;</pre
+            >
+          </figure>
+          <!-- end コード -->
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>「u-btn-wrapper」で囲むことは必須。</p>
+        <p>「.opt-left, .opt-right, .opt-col2, .opt-even, .opt-full」「u-pc:」「u-sp:」をつけることで、パソコンの時・スマホの時に反映することができる。</p>
+        <p>.u-btn-wrapper.opt-col3追加。</p>
+        <p>buttonタグにはaria-label=""をつける。値はボタンの読み上げを意識したテキスト。</p>
+        <p>.u-btn.u-bg-red のようにu-bgスタイルを使うと色が変えられる。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end ボタン -->
+
+  <!-- リンク -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">リンク</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div>
+          <a href="" class="u-link">u-link</a>
+        </div>
+        <div>
+          <a href="" class="u-link opt-inactive">u-link opt-inactive 不活性</a>
+        </div>
+        <div>
+          <a href="" class="u-link opt-ex">u-link opt-ex</a>
+        </div>
+        <div>
+          <a href="" class="u-link opt-arrow">u-link opt-arrow</a>
+        </div>
+        <div>
+          <a href="" class="u-link opt-arrow-down">u-link opt-arrow-down</a>
+        </div>
+        <div>
+          <a href="" class="u-link opt-pdf" target="_blank">u-link opt-pdf</a>
+        </div>
+        <div>
+          <a href="" class="u-link1">u-link1</a>
+        </div>
+        <div>
+          <a href="" class="u-link2">u-link2</a>
+        </div>
+        <div>
+          <a href="" class="u-link3">
+            <span style="background-color: peachpuff; display: block; text-align: center; padding: 20px">
+              u-link3<br />
+              バナーとかに良いかと
+            </span></a
+          >
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;a href=&quot;&quot; class=&quot;u-link&quot;&gt;u-link&lt;/a&gt;
+
+&lt;a href=&quot;&quot; class=&quot;u-link opt-inactive&quot;&gt;u-link opt-inactive 不活性&lt;/a&gt;
+
+&lt;a href=&quot;&quot; target=&quot;_blank&quot; class=&quot;u-link opt-ex&quot;&gt;u-link opt-ex&lt;/a&gt;
+
+&lt;a href=&quot;&quot; class=&quot;u-link opt-arrow&quot;&gt;u-link opt-arrow&lt;/a&gt;
+
+&lt;a href=&quot;&quot; class=&quot;u-link opt-arrow-down&quot;&gt;u-link opt-arrow-down&lt;/a&gt;
+
+&lt;a href=&quot;&quot; target=&quot;_blank&quot; class=&quot;u-link opt-pdf&quot;&gt;u-link opt-pdf&lt;/a&gt;
+
+&lt;a href=&quot;&quot; class=&quot;u-link1&quot;&gt;u-link1&lt;/a&gt;
+
+&lt;a href=&quot;&quot; class=&quot;u-link2&quot;&gt;u-link2&lt;/a&gt;
+
+&lt;a href=&quot;&quot; class=&quot;u-link3&quot;&gt;u-link3&lt;/a&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>target="_blank" rel="noopener noreferrer"</p>
+        <p>optクラスは、u-link3以外に適用している。</p>
+        <p>u-c-クラスなどの色変えの対応完備。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end リンク -->
+
+  <!-- グレーアウトエリア -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">グレーアウトエリア</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="u-grayout">
+          <p class="u-grayout-text">終了しました / Coming Soon</p>
+
+          <div>
+            <a href="" class="u-link3"><span style="background-color: peachpuff; display: block; text-align: center; padding: 20px">要素</span></a>
+          </div>
+          <div class="u-mt-30">
+            <a href="" class="u-link3"><span style="background-color: lightblue; display: block; text-align: center; padding: 20px">要素</span></a>
+          </div>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-grayout&quot;&gt;
+&lt;p class=&quot;u-grayout-text&quot;&gt;終了しました / Coming Soon&lt;/p&gt;
+
+コンテンツ
+&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end グレーアウトエリア -->
+
+  <!-- ボックス -->
+  <section style="background-color: white">
+    <div class="this-inner">
+      <div class="title___">ボックス</div>
+
+      <article>
+        <!-- コンテント -->
+        <div class="content___ u-vert-30">
+          <div class="u-box">
+            <h2 class="u-box-title">お知らせ通常</h2>
+            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </div>
+
+          <div class="u-box opt-attn">
+            <h2 class="u-box-title">お知らせ緊急</h2>
+            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </div>
+        </div>
+        <!-- end コンテント -->
+
+        <!-- コード -->
+        <figure class="code___">
+          <pre class="prettyprint">
+&lt;div class=&quot;u-box&quot;&gt;
+&lt;h2 class=&quot;u-box-title&quot;&gt;お知らせ通常&lt;/h2&gt;
+コンテンツ
+&lt;/div&gt;
+
+&lt;div class=&quot;u-box opt-attn&quot;&gt;
+&lt;h2 class=&quot;u-box-title&quot;&gt;お知らせ緊急&lt;/h2&gt;
+コンテンツ
+&lt;/div&gt;
+</pre
+          >
+        </figure>
+        <!-- end コード -->
+
+        <!-- その他 -->
+        <div class="other___">
+          <p>.u-box-titleはなくても問題ない</p>
+        </div>
+      </article>
+
+      <article class="u-mt-100">
+        <!-- コンテント -->
+        <div class="content___ u-vert-30">
+          <div class="u-box1">
+            <h2 class="u-box-title">お知らせ</h2>
+            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </div>
+        </div>
+        <!-- end コンテント -->
+
+        <!-- コード -->
+        <figure class="code___">
+          <pre class="prettyprint">
+&lt;div class=&quot;u-box1&quot;&gt;
+&lt;h2 class=&quot;u-box-title&quot;&gt;&lt;/h2&gt;
+コンテンツ
+&lt;/div&gt;</pre
+          >
+        </figure>
+        <!-- end コード -->
+
+        <!-- その他 -->
+        <div class="other___">
+          <p>u-box-titleを流用しても良い。</p>
+          <p>.u-box1.u-bdc-色、でボーダーの色を変えられる。</p>
+        </div>
+      </article>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end ボックス -->
+
+  <!-- テーブル -->
+  <section style="background-color: #ddd">
+    <div class="this-inner">
+      <div class="title___">テーブル</div>
+
+      <div class="">
+        <!-- コンテント -->
+        <div class="content___ u-vert-50">
+          <div class="u-table pc:opt-full sp:opt-nowrap js-sb">
+            <table class="u-ta-c">
+              <thead>
+                <tr>
+                  <th width="5%">回数</th>
+                  <th>実施日</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>12月8日</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>12月8日</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="u-table opt-full opt-center-th">
+            <table>
+              <tbody>
+                <tr>
+                  <th width="20%">テキスト</th>
+                  <td>テキスト</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- end コンテント -->
+
+        <!-- コード -->
+        <figure class="code___">
+          <pre class="prettyprint">
+&lt;div class=&quot;u-table pc:opt-full sp:opt-nowrap js-sb&quot;&gt;
+&lt;table class=&quot;u-ta-c&quot;&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-table opt-full opt-center-th&quot;&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;th width=&quot;20%&quot;&gt;目的&lt;/th&gt;
+    &lt;td&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;&lt;/th&gt;
+    &lt;td&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;</pre
+          >
+        </figure>
+        <!-- end コード -->
+
+        <!-- その他 -->
+        <div class="other___">
+          <p>他にも、.opt-nowrapのオプションクラスがあります。</p>
+          <p>.opt-nowrapは、基本的にテキストが折り返しをしなくなり、任意のところにbrタグを入れて調整します。</p>
+          <p>オプションクラスは「pc:」「sp:」を接頭につけると、それぞれPC時・SP時に反映されます。</p>
+          <p>.opt-nowrap-th 追加。th要素だけ折り返さない。</p>
+          <p>追記: .u-bdr-noneなどで線を消せる。</p>
+        </div>
+        <!-- end その他 -->
+      </div>
+    </div>
+  </section>
+  <!-- end テーブル -->
+
+  <!-- インナー -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">インナー</div>
+    </div>
+
+    <!-- コンテント -->
+    <div class="content___ u-vert-30">
+      <div class="u-inner" style="background-color: peachpuff">
+        <div class="u-ta-c" style="background-color: lightcyan">
+          <div style="font-size: 256px">🦦</div>
+          <div>u-inner 900</div>
+        </div>
+      </div>
+
+      <div class="u-inner1" style="background-color: peachpuff">
+        <div class="u-ta-c" style="background-color: lightcyan">
+          <div style="font-size: 256px">🦦</div>
+          <div>u-inner1 1200</div>
+        </div>
+      </div>
+
+      <div class="u-inner2" style="background-color: peachpuff">
+        <div class="u-ta-c" style="background-color: lightcyan">
+          <div style="font-size: 256px">🦦</div>
+          <div>u-inner2 1360</div>
+        </div>
+      </div>
+    </div>
+    <!-- end コンテント -->
+
+    <div class="this-inner">
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-inner&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;u-inner1&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;u-inner2&quot;&gt;&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>paddingやmarginを視認できるよう着色している。</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end インナー -->
+
+  <!-- 読み物テキスト -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">読み物テキスト</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="u-desc">
+          <p>
+            ひとよひとよにひとみごろふじさんろくにおおむなくひとなみにおごれやひとよひとよにひとみごろふじさんろくにおおむなくひとなみにおごれやひとよひとよにひとみごろふじさんろくにおおむなくひとなみにおごれやひとよひとよにひとみごろふじさんろくにおおむなくひとなみにおごれやひとよひとよにひとみごろふじさんろくにおおむなくひとなみにおごれやひとよひとよにひとみごろふじさんろくにおおむなくひとなみにおごれやひとよひとよにひとみごろふじさんろくにおおむなくひとなみにおごれや
+          </p>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;desc&quot;&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>読み物に使う。行間が通常より広い（lineheight:2弱）</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end 読み物テキスト -->
+
+  <!-- 定義リスト -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">定義リスト</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <dl class="u-def">
+          <dt class="u-def-term">タイトル</dt>
+          <dd class="u-def-desc">ディスクリプション</dd>
+
+          <dt class="u-def-term">タイトル</dt>
+          <dd class="u-def-desc">ディスクリプション</dd>
+
+          <dt class="u-def-term">タイトル</dt>
+          <dd class="u-def-desc">ディスクリプション</dd>
+        </dl>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;dl class=&quot;u-def&quot;&gt;
+&lt;dt class=&quot;u-def-term&quot;&gt;&lt;/dt&gt;
+&lt;dd class=&quot;u-def-desc&quot;&gt;&lt;/dd&gt;
+
+&lt;dt class=&quot;u-def-term&quot;&gt;&lt;/dt&gt;
+&lt;dd class=&quot;u-def-desc&quot;&gt;&lt;/dd&gt;
+&lt;/dl&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end 定義リスト -->
+
+  <!-- マーカー -->
+  <section style="background-color: white">
+    <div class="this-inner">
+      <div class="title___">マーカー</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <p><mark class="u-marker">テキストテキストテキストテキスト</mark>テキストテキスト</p>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">&lt;p&gt;&lt;mark class=&quot;u-marker&quot;&gt;テキストテキストテキストテキスト&lt;/mark&gt;テキストテキスト&lt;/p&gt;</pre>
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end マーカー -->
+
+  <!-- はみ出し -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">はみ出し</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <div class="inner u-pY-40" style="background-color: lightcyan">
+          <div class="u-stickout">
+            <div style="background-color: peachpuff; height: 100px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;inner&quot;&gt;
+&lt;div class=&quot;u-stickout&quot;&gt;
+  はみ出したい要素
+&lt;/div&gt;
+&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>.innerの中の要素を、inner幅からはみ出したい場合、.u-stickoutをつけると良い</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end はみ出し -->
+
+  <!-- サイズ -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">サイズ</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-50">
+        <div class="u-size-s">
+          <figure>
+            <img src="https://placehold.jp/1000x150.png" alt="" />
+          </figure>
+          <p>u-size-s 320</p>
+        </div>
+
+        <div class="u-size-m">
+          <figure>
+            <img src="https://placehold.jp/1000x150.png" alt="" />
+          </figure>
+          <div class="u-table opt-full u-mt-10">
+            <table>
+              <thead>
+                <tr>
+                  <th>テキスト</th>
+                  <th>テキスト</th>
+                  <th>テキスト</th>
+                  <th>テキスト</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>テキスト</th>
+                  <td>テキスト</td>
+                  <td>テキスト</td>
+                  <td>テキスト</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>u-size-m 430</p>
+        </div>
+
+        <div class="u-size-l">
+          <figure>
+            <img src="https://placehold.jp/1000x150.png" alt="" />
+          </figure>
+          <p>u-size-l 640</p>
+        </div>
+
+        <div class="u-size-full">
+          <figure>
+            <img src="https://placehold.jp/1000x150.png" alt="" />
+          </figure>
+          <p>u-size-full 幅いっぱい</p>
+        </div>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">
+&lt;div class=&quot;u-size-s&quot;&gt;コンテンツ&lt;/div&gt;
+
+&lt;div class=&quot;u-size-m&quot;&gt;コンテンツ&lt;/div&gt;
+
+&lt;div class=&quot;u-size-l&quot;&gt;コンテンツ&lt;/div&gt;
+
+&lt;div class=&quot;u-size-full&quot;&gt;コンテンツ&lt;/div&gt;</pre
+        >
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>画像に限らず使える</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end サイズ -->
+
+  <!-- 装飾目的の要素 -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">装飾目的の要素</div>
+
+      <!-- その他 -->
+      <div class="other___">
+        <p>「aria-hidden="true"」「role="presentation"」を使う</p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end 装飾目的の要素 -->
+
+  <!-- テンプレ -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">テンプレ</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10"></div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint"></pre>
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end テンプレ -->
+</main>
+
+<!-- ページナビゲーション -->
+<nav id="nav___">
+  <div id="navTrigger___">索引</div>
+  <div class="navLinks___wrap">
+    <ul id="navLinks___"></ul>
+  </div>
+</nav>
+<!-- end ページナビゲーション -->
+
+<!-- ページナビゲーション -->
+<script>
+  window.addEventListener("load", () => {
+    const nav = document.getElementById("nav___");
+    const trigger = document.getElementById("navTrigger___");
+    const section = document.querySelectorAll("main > section");
+
+    // 各セクション
+    section.forEach((_sec, i) => {
+      const value = "sec" + i;
+      _sec.setAttribute("id", value);
+    });
+
+    // セクションへジャンプ
+    const target = document.getElementById(window.location.href.split("#")[1]);
+    if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset, behavior: "smooth" });
+
+    // ナビリンク追加
+    const navLinks = document.getElementById("navLinks___");
+    const titles = document.querySelectorAll(".title___");
+    const dom = (_title, _num) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      const value = "#sec" + _num;
+      a.innerHTML = _title;
+      a.setAttribute("href", value);
+      li.appendChild(a);
+      return li;
+    };
+    titles.forEach((_title, _i) => {
+      const text = _title.innerHTML;
+      navLinks.appendChild(dom(text, _i));
+    });
+
+    // クリックイベント
+    const link = document.querySelectorAll("#nav___ a");
+    function on() {
+      nav.classList.toggle("is-active");
+    }
+    for (let i = 0; i < link.length; i++) {
+      link[i].addEventListener("click", on);
+    }
+    trigger.addEventListener("click", on);
+  });
+</script>
+<!-- end ページナビゲーション -->
+
+<!-- ソースコード表示形成 -->
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
+<!-- end ソースコード表示形成 -->
+<%# 後で消す ここまで %>

@@ -1178,8 +1178,71 @@ body {
 
 	// タイトル
 	&title {
-		// タイトル1
 		&1 {
+      font-weight: bold;
+      line-height: 1.4;
+      @include pc{
+        font-size: 5.6rem;
+      }
+      @include sp{
+        font-size: 2.4rem;
+      }
+		}
+		&2 {
+      font-weight: bold;
+      line-height: 1.4;
+      @include pc{
+        font-size: 3.2rem;
+      }
+      @include sp{
+        font-size: 2.2rem;
+      }
+		}
+    &3, &4{
+      font-weight: bold;
+      > span{
+        line-height: 1.4;
+        display: inline-block;
+        background: $gray;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+		&3 {
+      @include pc{
+        font-size: 2.8rem;
+      }
+      @include sp{
+        font-size: 2rem;
+      }
+		}
+		&4 {
+      @include pc{
+        font-size: 2rem;
+      }
+      @include sp{
+        font-size: 1.8rem;
+      }
+		}
+		&5 {
+      font-weight: bold;
+      line-height: 1.4;
+      @include pc{
+        font-size: 2rem;
+      }
+      @include sp{
+        font-size: 1.6rem;
+      }
+		}
+		&6 {
+      font-weight: bold;
+      line-height: 1.4;
+      @include pc{
+        font-size: 1.6rem;
+      }
+      @include sp{
+        font-size: 1.4rem;
+      }
 		}
 	}
 
