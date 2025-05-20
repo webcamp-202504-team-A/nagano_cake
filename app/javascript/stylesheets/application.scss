@@ -1569,43 +1569,23 @@ body {
 
 	// ボックス
 	&box {
-		background-color: $gray;
-		@include pc {
-			padding: 4rem;
-		}
-		@include sp {
-			padding: 2rem;
-		}
-		&-title {
-			font-weight: 700;
-			line-height: calc(24 / 16);
-			font-size: 1.6rem;
-			@include pc {
-				margin-bottom: 2rem;
-			}
-			@include sp {
-				margin-bottom: 1rem;
-			}
-		}
-		&.opt {
-			&-attn {
-				background-color: peachpuff;
-				color: $red;
-			}
-		}
-
-		&1 {
-			border: 3px solid currentColor;
-			background-color: white;
-			@include pc {
-				padding: 4rem;
-				border-radius: 2rem;
-			}
-			@include sp {
-				padding: 2rem;
-				border-radius: 1rem;
-			}
-		}
+		background-color: white;
+    border: 2px solid $black;
+    &-head,
+    &-body{
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    &-head{
+      border-bottom: 2px solid $black;
+      text-align: center;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+    }
+    &-body{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
 	}
 
 	// テーブル
@@ -1730,34 +1710,24 @@ body {
 		td {
 			background: white;
 		}
-
-		&1 {
-			overflow: auto;
-			@include tableBase;
-			th,
-			td {
-				line-height: calc(21 / 14);
-				border: 1px solid currentColor;
-				@include pc {
-					padding: 2rem;
-				}
-				@include sp {
-					padding: 1rem;
-				}
-
-				&.u-bdr-none {
-					+ * {
-						border-left: none;
-					}
-				}
-			}
-			th {
-				text-align: initial;
-				font-weight: bold;
-			}
-			td {
-			}
+	}
+	&table-1 {
+		@include tableBase;
+		th,
+		td {
+			padding: 1.5rem;
 		}
+		th {
+			font-weight: 700;
+			background: $gray;
+			text-align: inherit;
+		}
+		td {
+			background: white;
+		}
+    tbody tr{
+      border-bottom: 2px solid $gray;
+    }
 	}
 
 	// インナー

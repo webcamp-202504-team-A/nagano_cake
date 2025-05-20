@@ -1223,56 +1223,35 @@
         <!-- コンテント -->
         <div class="content___ u-vert-30">
           <div class="u-box">
-            <h2 class="u-box-title">お知らせ通常</h2>
-            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-          </div>
-
-          <div class="u-box opt-attn">
-            <h2 class="u-box-title">お知らせ緊急</h2>
-            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-          </div>
-        </div>
-        <!-- end コンテント -->
-
-        <!-- コード -->
-        <figure class="code___">
-          <pre class="prettyprint">
-&lt;div class=&quot;u-box&quot;&gt;
-&lt;h2 class=&quot;u-box-title&quot;&gt;お知らせ通常&lt;/h2&gt;
-コンテンツ
-&lt;/div&gt;
-
-&lt;div class=&quot;u-box opt-attn&quot;&gt;
-&lt;h2 class=&quot;u-box-title&quot;&gt;お知らせ緊急&lt;/h2&gt;
-コンテンツ
-&lt;/div&gt;
-</pre
-          >
-        </figure>
-        <!-- end コード -->
-
-        <!-- その他 -->
-        <div class="other___">
-          <p>.u-box-titleはなくても問題ない</p>
-        </div>
-      </article>
-
-      <article class="u-mt-100">
-        <!-- コンテント -->
-        <div class="content___ u-vert-30">
-          <div class="u-box1">
-            <h2 class="u-box-title">お知らせ</h2>
-            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <div class="u-box-head">
+              <h3><b>ジャンル検索</b></h3>
+            </div>
+            <div class="u-box-body">
+              <ul>
+                <li>ケーキ</li>
+                <li>焼き菓子</li>
+                <li>プリン</li>
+                <li>キャンディ</li>
+              </ul>
+            </div>
           </div>
         </div>
         <!-- end コンテント -->
 
         <!-- コード -->
         <figure class="code___">
-          <pre class="prettyprint">
-&lt;div class=&quot;u-box1&quot;&gt;
-&lt;h2 class=&quot;u-box-title&quot;&gt;&lt;/h2&gt;
-コンテンツ
+          <pre class="prettyprint">&lt;div class=&quot;u-box&quot;&gt;
+  &lt;div class=&quot;u-box-head&quot;&gt;
+    &lt;h3&gt;&lt;b&gt;ジャンル検索&lt;/b&gt;&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;u-box-body&quot;&gt;
+    &lt;ul&gt;
+      &lt;li&gt;ケーキ&lt;/li&gt;
+      &lt;li&gt;焼き菓子&lt;/li&gt;
+      &lt;li&gt;プリン&lt;/li&gt;
+      &lt;li&gt;キャンディ&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</pre
           >
         </figure>
@@ -1280,8 +1259,6 @@
 
         <!-- その他 -->
         <div class="other___">
-          <p>u-box-titleを流用しても良い。</p>
-          <p>.u-box1.u-bdc-色、でボーダーの色を変えられる。</p>
         </div>
       </article>
       <!-- end その他 -->
@@ -1294,7 +1271,7 @@
     <div class="this-inner">
       <div class="title___">テーブル</div>
 
-      <div class="">
+      <article class="">
         <!-- コンテント -->
         <div class="content___ u-vert-50">
           <div class="u-table pc:opt-full sp:opt-nowrap">
@@ -1377,7 +1354,69 @@
           <p>追記: .u-bdr-noneなどで線を消せる。</p>
         </div>
         <!-- end その他 -->
-      </div>
+      </article>
+
+      <!-- テーブル1 -->
+      <article class="u-mt-80">
+        <!-- コンテント -->
+        <div class="content___ u-vert-50">
+          <div class="u-table-1 pc:opt-full sp:opt-nowrap">
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="2" class="u-ta-c">ジャンル</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ケーキ</td>
+                  <td>編集する</td>
+                </tr>
+                <tr>
+                  <td>ケーキ</td>
+                  <td>編集する</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- end コンテント -->
+
+        <!-- コード -->
+        <figure class="code___">
+          <pre class="prettyprint">&lt;div class=&quot;u-table-1 pc:opt-full sp:opt-nowrap&quot;&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th colspan=&quot;2&quot; class=&quot;u-ta-c&quot;&gt;ジャンル&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;ケーキ&lt;/td&gt;
+        &lt;td&gt;編集する&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;ケーキ&lt;/td&gt;
+        &lt;td&gt;編集する&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</pre
+          >
+        </figure>
+        <!-- end コード -->
+
+        <!-- その他 -->
+        <div class="other___">
+          <p>他にも、.opt-nowrapのオプションクラスがあります。</p>
+          <p>.opt-nowrapは、基本的にテキストが折り返しをしなくなり、任意のところにbrタグを入れて調整します。</p>
+          <p>オプションクラスは「pc:」「sp:」を接頭につけると、それぞれPC時・SP時に反映されます。</p>
+          <p>.opt-nowrap-th 追加。th要素だけ折り返さない。</p>
+          <p>追記: .u-bdr-noneなどで線を消せる。</p>
+        </div>
+        <!-- end その他 -->
+      </article>
     </div>
   </section>
   <!-- end テーブル -->
