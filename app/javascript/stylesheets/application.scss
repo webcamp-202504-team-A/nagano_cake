@@ -1526,70 +1526,19 @@ body {
 
 	// リンク
 	&link {
-		color: peachpuff;
+		color: $blue;
+    text-decoration: underline;
 		transition: opacity ease 0.6s;
 
 		&:hover {
 			opacity: 0.5;
 		}
-
-		&1 {
-			transition: opacity ease 0.6s;
-			color: $red;
-			background: linear-gradient(to right, currentColor 0%, currentColor 100%);
-			background-position: 0 100%;
-			background-repeat: no-repeat;
-			background-size: 100% 1px;
-			&:hover {
-				opacity: 0.5;
-			}
-		}
-
-		&2 {
-			transition: opacity ease 0.6s;
-			background: linear-gradient(to right, currentColor 0%, currentColor 100%);
-			background-position: 0 100%;
-			background-repeat: no-repeat;
-			background-size: 0% 1px;
-			transition: background-size 0.3s ease-in-out;
-			&:hover {
-				background-size: 100% 1px;
-			}
-		}
-
-		&3 {
-			transition: all $ease 0.6s;
-			opacity: 1;
-			@include hover {
-				opacity: 0.5;
-			}
-			&.opt-inactive {
-				pointer-events: none;
-				opacity: 0.5;
-			}
-		}
-	}
-	&link2,
-	&link1,
-	&link {
-		&.opt {
-			&-inactive {
-				pointer-events: none;
-				color: gray;
-			}
-			&-arrow-up {
-				&::after {
-					position: relative;
-					rotate: -90deg;
-				}
-			}
-			&-arrow-down {
-				&::after {
-					position: relative;
-					rotate: 90deg;
-				}
-			}
-		}
+    &.opt {
+      &-inactive {
+        pointer-events: none;
+        color: gray;
+      }
+    }
 	}
 
 	// グレーアウトエリア
@@ -1771,45 +1720,15 @@ body {
 		th,
 		td {
 			padding: 1.5rem;
+			border: 2px solid $black;
 		}
 		th {
 			font-weight: 700;
-			background: $red;
-			color: white;
-			border: 1px solid white;
+			background: $gray;
 			text-align: inherit;
 		}
 		td {
 			background: white;
-			border: 1px solid $gray;
-		}
-		thead {
-			th {
-				border-top: none;
-				&:first-child {
-					border-left: none;
-				}
-				&:last-child {
-					border-right: none;
-				}
-			}
-		}
-		tbody {
-			tr {
-				th:first-child {
-					border-left: none;
-				}
-				&:first-child {
-					th {
-						border-top: none;
-					}
-				}
-				&:last-child {
-					th {
-						border-bottom: none;
-					}
-				}
-			}
 		}
 
 		&1 {
