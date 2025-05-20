@@ -1872,4 +1872,25 @@ body {
 			}
 		}
 	}
+
+  // フォーム系
+  &form {
+    // &-file,
+    &-select,
+    &-textarea,
+    &-textfield{
+      padding: 0.6rem 1rem;
+      border: 1px solid $black;
+      border-radius: .5rem;
+      @include pc{
+        font-size: 1.6rem;
+      }
+      @include pc{
+        font-size: 1.4rem;
+      }
+      &.opt-full{
+        width: 100%;
+      }
+    }
+  }
 }

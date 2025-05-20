@@ -393,39 +393,6 @@
   </section>
   <!-- end テキスト配置 -->
 
-  <!-- テキスト縦書き -->
-  <section>
-    <div class="this-inner">
-      <div class="title___">テキスト縦書き</div>
-
-      <!-- コンテント -->
-      <div class="content___ u-vert-30">
-        <p class="u-text-tate">テキスト、イーグルス</p>
-        <p class="u-pc:text-tate">2025年1月31日</p>
-        <p class="u-text-tate">２０２５年１月３１日</p>
-      </div>
-      <!-- end コンテント -->
-
-      <!-- コード -->
-      <figure class="code___">
-        <pre class="prettyprint">
-&lt;p class=&quot;u-text-tate&quot;&gt;テキスト、イーグルス&lt;/p&gt;
-&lt;p class=&quot;u-pc:text-tate&quot;&gt;2025年1月31日&lt;/p&gt;
-&lt;p class=&quot;u-text-tate&quot;&gt;２０２５年１月３１日&lt;/p&gt;
-</pre
-        >
-      </figure>
-      <!-- end コード -->
-
-      <!-- その他 -->
-      <div class="other___">
-        <p>「u-pc:」「u-sp:」を前方につけることでPC/SPのみ反映する。</p>
-      </div>
-      <!-- end その他 -->
-    </div>
-  </section>
-  <!-- end テキスト縦書き -->
-
   <!-- 背景色 -->
   <section>
     <div class="this-inner">
@@ -1698,6 +1665,93 @@
     </div>
   </section>
   <!-- end 装飾目的の要素 -->
+
+  <!-- フォームの要素 -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">フォームの要素</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <%= form_with do |f| %>
+          <div>
+            <%= f.text_field :username, placeholder: "ユーザー名を入力", class: "u-form-textfield" %>
+          </div>
+
+          <div>
+            <%= f.text_area :bio, 
+              rows: 5, 
+              placeholder: "自己紹介を入力（200文字まで）", 
+              class: "u-form-textarea opt-full" %>
+          </div>
+
+          <div>
+            <%= f.select :prefecture, 
+              [["東京都", "tokyo"], ["大阪府", "osaka"], ["北海道", "hokkaido"]], 
+              { include_blank: "選択してください" }, 
+              { class: "u-form-select" } %>
+          </div>
+        
+          <div>
+            <%= f.file_field :avatar, 
+              accept: "image/png,image/jpeg", 
+              class: "u-form-file" %>
+          </div>
+  
+          <div>
+            <%= f.radio_button :gender, "male" %>
+            <%= f.label :gender_male, "男性" %>
+            <%= f.radio_button :gender, "female" %>
+            <%= f.label :gender_female, "女性" %>
+          </div>
+        <% end %>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">&lt;%= form_with do |f| %&gt;
+  &lt;div&gt;
+    &lt;%= f.text_field :username, placeholder: &quot;ユーザー名を入力&quot;, class: &quot;u-form-textfield&quot; %&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;%= f.text_area :bio, 
+      rows: 5, 
+      placeholder: &quot;自己紹介を入力（200文字まで）&quot;, 
+      class: &quot;u-form-textarea opt-full&quot; %&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;%= f.select :prefecture, 
+      [[&quot;東京都&quot;, &quot;tokyo&quot;], [&quot;大阪府&quot;, &quot;osaka&quot;], [&quot;北海道&quot;, &quot;hokkaido&quot;]], 
+      { include_blank: &quot;選択してください&quot; }, 
+      { class: &quot;u-form-select&quot; } %&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;%= f.file_field :avatar, 
+      accept: &quot;image/png,image/jpeg&quot;,
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;%= f.radio_button :gender, &quot;male&quot; %&gt;
+    &lt;%= f.label :gender_male, &quot;男性&quot; %&gt;
+    &lt;%= f.radio_button :gender, &quot;female&quot; %&gt;
+    &lt;%= f.label :gender_female, &quot;女性&quot; %&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;</pre>
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end フォームの要素 -->
 
   <!-- テンプレ -->
   <section>
