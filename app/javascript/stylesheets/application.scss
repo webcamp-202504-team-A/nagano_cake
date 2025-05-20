@@ -1,1 +1,1847 @@
-@use '~bootstrap/scss/bootstrap';
+// 共通css
+@charset "utf-8";
+// @use '~bootstrap/scss/bootstrap';
+@forward "sass:math";
+@use "reset";
+@use "normalize";
+
+// === 変数 ===
+$font: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", "Noto Sans CJK", "Yu Gothic", "Helvetica Neue", "Original Yu Gothic", YuGothic, Meiryo, Arial, system-ui, sans-serif;
+
+// カラー：数字が大きいほど色が濃い（定礎以降の追加カラーはこのルールは適用しない）
+$black: #000;
+$gray: #eee;
+$red: #aa0000;
+:root {
+  --c-white: white;
+  --c-gray: #eee;
+  --c-black: $black;
+  --c-red: $red;
+}
+
+// サイト横幅
+$w-site: 1200px;
+$w-bp: 767px;
+
+// インナー横方向余白
+$inner-paddingX-pc: 8rem;
+$inner-paddingX-sp: 2rem;
+
+// アニメーション遷移
+$ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+// === end ===
+
+// === ミックスイン ===
+@mixin sp() {
+	@media screen and (max-width: $w-bp) {
+		@content;
+	}
+}
+@mixin pc() {
+	@media screen and (min-width: calc($w-bp + 1px)) {
+		@content;
+	}
+}
+
+// カラム割
+// $division: 列数, $marginLeft: 水平方向マージン, $marginTop: 垂直方向マージン
+@mixin setColumn($division: 4, $marginLeft: 5%, $marginTop: $marginLeft) {
+	display: flex;
+	flex-wrap: wrap;
+	> * {
+		width: calc((100% - #{$marginLeft} * (#{$division} - 1)) / #{$division});
+		&:not(:nth-child(#{$division}n + 1)) {
+			margin-left: $marginLeft;
+		}
+		&:nth-child(n + #{$division + 1}) {
+			margin-top: $marginTop;
+		}
+	}
+}
+
+// ホバー
+// aにhref属性がある場合・buttonがenabledの場合・summaryである場合にのみホバーイベントをかけることができる。
+@mixin hover {
+	@media (hover: hover) {
+		&:where(:any-link, :enabled, summary):hover {
+			@content;
+		}
+	}
+}
+
+// 伸びる線
+@mixin nobiruSen($weight: 2px, $posY: 0px, $color: currentColor) {
+	position: relative;
+	&::after {
+		content: "";
+		display: block;
+		height: $weight;
+		width: 100%;
+		background: $color;
+		position: absolute;
+		bottom: $posY;
+		left: 0;
+		scale: 0 1;
+		transform-origin: top left;
+		transition: scale $ease 0.6s;
+	}
+}
+@mixin nobiruSenHovered() {
+	&::after {
+		scale: 1 1;
+	}
+}
+
+// マスクイメージ
+@mixin maskImage($x, $y, $url) {
+	aspect-ratio: #{$x} / #{$y};
+	height: auto;
+	mask-image: url($url);
+	mask-size: contain;
+	mask-repeat: no-repeat;
+}
+// === end ===
+
+// === 基本フォント設定 ===
+html {
+	@include pc() {
+    font-size: min(calc(0.6944444444vw), 10px);
+	}
+	@include sp {
+		font-size: 2.6666666667vw;
+	}
+}
+
+body {
+	font-family: $font;
+	letter-spacing: 0.1em;
+	line-height: 2;
+	color: $black;
+	word-break: break-all;
+	@include pc {
+		font-size: clamp(12px, 1.6rem, 16px);
+	}
+	@include sp {
+		font-size: 1.4rem;
+	}
+}
+// === end ===
+
+.u- {
+	$num: 5;
+
+	&pc {
+		@include sp {
+			display: none !important;
+		}
+	}
+	&sp {
+		@include pc {
+			display: none !important;
+		}
+	}
+
+	// マージン
+	@for $i from 0 through 20 {
+		&mt-#{$i * $num} {
+			margin-top: #{calc($i * $num / 10)}rem !important;
+		}
+		&mr-#{$i * $num} {
+			margin-right: #{calc($i * $num / 10)}rem !important;
+		}
+		&mb-#{$i * $num} {
+			margin-bottom: #{calc($i * $num / 10)}rem !important;
+		}
+		&ml-#{$i * $num} {
+			margin-left: #{calc($i * $num / 10)}rem !important;
+		}
+		&mX-#{$i * $num} {
+			margin-left: #{calc($i * $num / 10)}rem !important;
+			margin-right: #{calc($i * $num / 10)}rem !important;
+		}
+		&vert-#{$i * $num} {
+			> *:not(:first-child) {
+				margin-top: #{calc($i * $num / 10)}rem !important;
+			}
+		}
+	}
+	&mt-auto {
+		margin-top: auto !important;
+	}
+	&mr-auto {
+		margin-right: auto !important;
+	}
+	&ml-auto {
+		margin-left: auto !important;
+	}
+	&mb-auto {
+		margin-bottom: auto !important;
+	}
+	&mX-auto {
+		margin-right: auto !important;
+		margin-left: auto !important;
+	}
+	@include pc {
+		@for $i from 0 through 20 {
+			&pc\:mt-#{$i * $num} {
+				margin-top: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:mr-#{$i * $num} {
+				margin-right: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:mb-#{$i * $num} {
+				margin-bottom: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:ml-#{$i * $num} {
+				margin-left: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:mX-#{$i * $num} {
+				margin-left: #{calc($i * $num / 10)}rem !important;
+				margin-right: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:vert-#{$i * $num} {
+				> *:not(:first-child) {
+					margin-top: #{calc($i * $num / 10)}rem !important;
+				}
+			}
+		}
+		&pc\:mt-auto {
+			margin-top: auto !important;
+		}
+		&pc\:mr-auto {
+			margin-right: auto !important;
+		}
+		&pc\:ml-auto {
+			margin-left: auto !important;
+		}
+		&pc\:mb-auto {
+			margin-bottom: auto !important;
+		}
+		&pc\:mX-auto {
+			margin-right: auto !important;
+			margin-left: auto !important;
+		}
+	}
+	@include sp {
+		@for $i from 0 through 20 {
+			&sp\:mt-#{$i * $num} {
+				margin-top: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:mr-#{$i * $num} {
+				margin-right: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:mb-#{$i * $num} {
+				margin-bottom: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:ml-#{$i * $num} {
+				margin-left: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:mX-#{$i * $num} {
+				margin-left: #{calc($i * $num / 10)}rem !important;
+				margin-right: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:vert-#{$i * $num} {
+				> *:not(:first-child) {
+					margin-top: #{calc($i * $num / 10)}rem !important;
+				}
+			}
+		}
+		&sp\:mt-auto {
+			margin-top: auto !important;
+		}
+		&sp\:mr-auto {
+			margin-right: auto !important;
+		}
+		&sp\:ml-auto {
+			margin-left: auto !important;
+		}
+		&sp\:mb-auto {
+			margin-bottom: auto !important;
+		}
+		&sp\:mX-auto {
+			margin-right: auto !important;
+			margin-left: auto !important;
+		}
+	}
+
+	// パディング
+	@for $i from 0 through 20 {
+		&p-#{$i * $num} {
+			padding: #{calc($i * $num / 10)}rem !important;
+		}
+		&pt-#{$i * $num} {
+			padding-top: #{calc($i * $num / 10)}rem !important;
+		}
+		&pr-#{$i * $num} {
+			padding-right: #{calc($i * $num / 10)}rem !important;
+		}
+		&pb-#{$i * $num} {
+			padding-bottom: #{calc($i * $num / 10)}rem !important;
+		}
+		&pl-#{$i * $num} {
+			padding-left: #{calc($i * $num / 10)}rem !important;
+		}
+		&pY-#{$i * $num} {
+			padding-top: #{calc($i * $num / 10)}rem !important;
+			padding-bottom: #{calc($i * $num / 10)}rem !important;
+		}
+		&pX-#{$i * $num} {
+			padding-left: #{calc($i * $num / 10)}rem !important;
+			padding-right: #{calc($i * $num / 10)}rem !important;
+		}
+	}
+	@include pc {
+		@for $i from 0 through 20 {
+			&pc\:p-#{$i * $num} {
+				padding: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:pt-#{$i * $num} {
+				padding-top: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:pr-#{$i * $num} {
+				padding-right: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:pb-#{$i * $num} {
+				padding-bottom: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:pl-#{$i * $num} {
+				padding-left: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:pY-#{$i * $num} {
+				padding-top: #{calc($i * $num / 10)}rem !important;
+				padding-bottom: #{calc($i * $num / 10)}rem !important;
+			}
+			&pc\:pX-#{$i * $num} {
+				padding-left: #{calc($i * $num / 10)}rem !important;
+				padding-right: #{calc($i * $num / 10)}rem !important;
+			}
+		}
+	}
+	@include sp {
+		@for $i from 0 through 20 {
+			&sp\:p-#{$i * $num} {
+				padding: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:pt-#{$i * $num} {
+				padding-top: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:pr-#{$i * $num} {
+				padding-right: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:pb-#{$i * $num} {
+				padding-bottom: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:pl-#{$i * $num} {
+				padding-left: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:pY-#{$i * $num} {
+				padding-top: #{calc($i * $num / 10)}rem !important;
+				padding-bottom: #{calc($i * $num / 10)}rem !important;
+			}
+			&sp\:pX-#{$i * $num} {
+				padding-left: #{calc($i * $num / 10)}rem !important;
+				padding-right: #{calc($i * $num / 10)}rem !important;
+			}
+		}
+	}
+
+	// ギャップ
+	@for $i from 0 through 20 {
+		&gap-#{$i * $num} {
+			gap: #{calc($i * $num / 10)}rem !important;
+		}
+		&gapX-#{$i * $num} {
+			column-gap: #{calc($i * $num / 10)}rem !important;
+		}
+		&gapY-#{$i * $num} {
+			row-gap: #{calc($i * $num / 10)}rem !important;
+		}
+	}
+
+	// フォントサイズ
+	$fontSizeArray: 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32;
+	@each $var in $fontSizeArray {
+		&fz-#{$var} {
+			font-size: #{calc($var / 10)}rem !important;
+		}
+		@include pc {
+			&pc\:fz-#{$var} {
+				font-size: #{calc($var / 10)}rem !important;
+			}
+		}
+		@include sp {
+			&sp\:fz-#{$var} {
+				font-size: #{calc($var / 10)}rem !important;
+			}
+		}
+	}
+
+	// フォントウェイト・スタイル
+	&fw {
+		&-b {
+			font-weight: bold !important;
+		}
+		&-n {
+			font-weight: normal !important;
+		}
+	}
+	&fs {
+		&-i {
+			font-style: italic !important;
+		}
+		&-n {
+			font-style: normal !important;
+		}
+	}
+	// 折り返さない
+	&nowrap {
+		white-space: nowrap;
+	}
+	@include pc {
+		&pc\:nowrap {
+			white-space: nowrap;
+		}
+	}
+	@include sp {
+		&sp\:nowrap {
+			white-space: nowrap;
+		}
+	}
+	// バーティカルアライン
+	&va {
+		&-middle {
+			vertical-align: middle;
+		}
+		&-bottom {
+			vertical-align: bottom;
+		}
+		&-top {
+			vertical-align: top;
+		}
+		&-i {
+			vertical-align: initial;
+		}
+	}
+
+	// テキスト配置
+	&ta {
+		&-c {
+			text-align: center !important;
+		}
+		&-l {
+			text-align: left !important;
+		}
+		&-r {
+			text-align: right !important;
+		}
+	}
+	@include sp {
+		&sp\: {
+			&ta-c {
+				text-align: center;
+			}
+			&ta-l {
+				text-align: left;
+			}
+		}
+	}
+	@include pc {
+		&pc\: {
+			&ta-c {
+				text-align: center;
+			}
+			&ta-l {
+				text-align: left;
+			}
+		}
+	}
+
+	// テキスト縦書き
+	&text-tate {
+		writing-mode: vertical-rl;
+		-ms-writing-mode: tb-rl;
+	}
+	@include sp {
+		&sp\:text-tate {
+			writing-mode: vertical-rl;
+			-ms-writing-mode: tb-rl;
+		}
+	}
+	@include pc {
+		&pc\:text-tate {
+			writing-mode: vertical-rl;
+			-ms-writing-mode: tb-rl;
+		}
+	}
+
+	// 背景色
+	&bg {
+    &-white {
+      background-color: white !important;
+      color: $black;
+    }
+	}
+
+	// 文字色
+	&c {
+    &-white {
+      color: white !important;
+    }
+	}
+
+	// ボーダー
+	&bd {
+		border: 1px solid currentColor;
+		&t {
+			border-top: 1px solid currentColor;
+			&-none {
+				border-top: none !important;
+			}
+		}
+		&r {
+			border-right: 1px solid currentColor;
+			&-none {
+				border-right: none !important;
+			}
+		}
+		&b {
+			border-bottom: 1px solid currentColor;
+			&-none {
+				border-bottom: none !important;
+			}
+		}
+		&l {
+			border-left: 1px solid currentColor;
+			&-none {
+				border-left: none !important;
+			}
+		}
+		@for $i from 1 through 10 {
+			&-#{$i} {
+				border-width: #{$i}px !important;
+				border-style: solid !important;
+			}
+			&t-#{$i} {
+				border-width: #{$i}px !important;
+				border-top-style: solid !important;
+			}
+			&r-#{$i} {
+				border-width: #{$i}px !important;
+				border-right-style: solid !important;
+			}
+			&b-#{$i} {
+				border-width: #{$i}px !important;
+				border-bottom-style: solid !important;
+			}
+			&l-#{$i} {
+				border-width: #{$i}px !important;
+				border-left-style: solid !important;
+			}
+		}
+		&-none {
+			border: none !important;
+		}
+	}
+	@include pc {
+		&pc\:bd {
+			border: 1px solid currentColor;
+			&t {
+				border-top: 1px solid currentColor;
+				&-none {
+					border-top: none !important;
+				}
+			}
+			&r {
+				border-right: 1px solid currentColor;
+				&-none {
+					border-right: none !important;
+				}
+			}
+			&b {
+				border-bottom: 1px solid currentColor;
+				&-none {
+					border-bottom: none !important;
+				}
+			}
+			&l {
+				border-left: 1px solid currentColor;
+				&-none {
+					border-left: none !important;
+				}
+			}
+			@for $i from 1 through 10 {
+				&-#{$i} {
+					border-width: #{$i}px !important;
+					border-style: solid !important;
+				}
+				&t-#{$i} {
+					border-width: #{$i}px !important;
+					border-top-style: solid !important;
+				}
+				&r-#{$i} {
+					border-width: #{$i}px !important;
+					border-right-style: solid !important;
+				}
+				&b-#{$i} {
+					border-width: #{$i}px !important;
+					border-bottom-style: solid !important;
+				}
+				&l-#{$i} {
+					border-width: #{$i}px !important;
+					border-left-style: solid !important;
+				}
+			}
+			&-none {
+				border: none !important;
+			}
+		}
+	}
+	@include sp {
+		&sp\:bd {
+			border: 1px solid currentColor;
+			&t {
+				border-top: 1px solid currentColor;
+				&-none {
+					border-top: none !important;
+				}
+			}
+			&r {
+				border-right: 1px solid currentColor;
+				&-none {
+					border-right: none !important;
+				}
+			}
+			&b {
+				border-bottom: 1px solid currentColor;
+				&-none {
+					border-bottom: none !important;
+				}
+			}
+			&l {
+				border-left: 1px solid currentColor;
+				&-none {
+					border-left: none !important;
+				}
+			}
+			@for $i from 1 through 10 {
+				&-#{$i} {
+					border-width: #{$i}px !important;
+					border-style: solid !important;
+				}
+				&t-#{$i} {
+					border-width: #{$i}px !important;
+					border-top-style: solid !important;
+				}
+				&r-#{$i} {
+					border-width: #{$i}px !important;
+					border-right-style: solid !important;
+				}
+				&b-#{$i} {
+					border-width: #{$i}px !important;
+					border-bottom-style: solid !important;
+				}
+				&l-#{$i} {
+					border-width: #{$i}px !important;
+					border-left-style: solid !important;
+				}
+			}
+			&-none {
+				border: none !important;
+			}
+		}
+	}
+
+	// ボーダーカラー
+	&bdc {
+    &-white {
+      border-color: white !important;
+    }
+	}
+
+	// 画像
+	&fig {
+		&-inner {
+			display: inline-flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+		&.opt {
+			&-full {
+				img {
+					width: 100%;
+					max-width: initial;
+				}
+			}
+			&-r,
+			&-l,
+			&-c {
+				> *:not(img) {
+					text-align: initial;
+				}
+			}
+			&-c {
+				text-align: center;
+				.u-attn.u-ta-c {
+					display: inline;
+				}
+			}
+			&-l {
+				text-align: left;
+			}
+			&-r {
+				text-align: right;
+			}
+		}
+		@include pc {
+			&.pc\:opt {
+				&-r,
+				&-l,
+				&-c {
+					> *:not(img) {
+						text-align: initial;
+					}
+				}
+				&-c {
+					text-align: center;
+					.u-attn.u-ta-c {
+						display: inline;
+					}
+				}
+				&-l {
+					text-align: left;
+				}
+				&-r {
+					text-align: right;
+				}
+			}
+		}
+		@include sp {
+			&-r,
+			&-l,
+			&-c {
+				> *:not(img) {
+					text-align: initial;
+				}
+			}
+			&-c {
+				text-align: center;
+				.u-attn.u-ta-c {
+					display: inline;
+				}
+			}
+			&-l {
+				text-align: left;
+			}
+			&-r {
+				text-align: right;
+			}
+		}
+	}
+
+	// 接頭(注意やリストとか)
+	&attn {
+		padding-left: 1em;
+		position: relative;
+		&::before {
+			content: "※";
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: $red;
+		}
+		&.opt {
+			&-center {
+				width: fit-content;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		@include pc {
+			&.pc\:opt {
+				&-center {
+					width: fit-content;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+		@include sp {
+			&.sp\:opt {
+				&-center {
+					width: fit-content;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+		&-list {
+			> * {
+				@extend .u-attn;
+			}
+			&.opt {
+				&-center {
+					> * {
+						width: fit-content;
+						margin-left: auto;
+						margin-right: auto;
+					}
+				}
+			}
+			@include pc {
+				&.pc\:opt {
+					&-center {
+						> * {
+							width: fit-content;
+							margin-left: auto;
+							margin-right: auto;
+						}
+					}
+				}
+			}
+			@include sp {
+				&.sp\:opt {
+					&-center {
+						> * {
+							width: fit-content;
+							margin-left: auto;
+							margin-right: auto;
+						}
+					}
+				}
+			}
+		}
+	}
+	&ind {
+		padding-left: 1em;
+		text-indent: -1em;
+		&-list {
+			> * {
+				@extend .u-ind;
+			}
+		}
+		.u-attn {
+			text-indent: 0;
+		}
+	}
+	&list {
+		$space: 1.2em;
+		padding-left: $space;
+		list-style-position: outside;
+		> * {
+			list-style: initial;
+			&::marker {
+				color: $red;
+			}
+			&.u-attn {
+				margin-left: calc($space * -1);
+				&::marker {
+					content: none;
+				}
+			}
+		}
+
+		// 数字
+		&-num {
+			padding-left: 1.75em;
+			list-style-position: outside;
+			list-style: decimal;
+			> * {
+				list-style: decimal;
+			}
+		}
+	}
+
+	// レイアアウト
+	$gap-step: 5;
+	@mixin colBase($col-num, $col-gap) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: $col-gap;
+		> * {
+			width: calc((100% / $col-num) - ($col-gap / $col-num * ($col-num - 1)));
+		}
+	}
+	@for $i from 0 through 20 {
+		$gap: calc($i * $gap-step / 10 * 1rem);
+		&col2-#{$i * $gap-step} {
+			@include colBase(2, $gap);
+		}
+		&col3-#{$i * $gap-step} {
+			@include colBase(3, $gap);
+		}
+		&col4-#{$i * $gap-step} {
+			@include colBase(4, $gap);
+		}
+		&pc\: {
+			@include pc {
+				&col2-#{$i * $gap-step} {
+					@include colBase(2, $gap);
+				}
+				&col3-#{$i * $gap-step} {
+					@include colBase(3, $gap);
+				}
+				&col4-#{$i * $gap-step} {
+					@include colBase(4, $gap);
+				}
+			}
+		}
+		&sp\: {
+			@include sp {
+				&col2-#{$i * $gap-step} {
+					@include colBase(2, $gap);
+				}
+				&col3-#{$i * $gap-step} {
+					@include colBase(3, $gap);
+				}
+				&col4-#{$i * $gap-step} {
+					@include colBase(4, $gap);
+				}
+			}
+		}
+	}
+
+	// バナー
+	&banner {
+		a {
+		}
+	}
+
+	// ディスプレイ要素
+	@mixin dfBase {
+		display: flex;
+		&.opt-center {
+			justify-content: center;
+			align-items: center;
+		}
+		&.opt-center-x {
+			justify-content: center;
+		}
+		&.opt-center-y {
+			align-items: center;
+		}
+		&.opt-even {
+			justify-content: space-evenly;
+		}
+		@for $i from 1 through 10 {
+			&.opt-ratio-#{$i}\:#{calc(10 - $i)} {
+				> * {
+					&:nth-child(odd) {
+						width: calc(10% * $i);
+					}
+					&:nth-child(even) {
+						width: calc(10% * (10 - $i));
+					}
+				}
+			}
+		}
+		@include pc {
+			&.pc\: {
+				&opt-center {
+					justify-content: center;
+					align-items: center;
+				}
+				&opt-center-x {
+					justify-content: center;
+				}
+				&opt-center-y {
+					align-items: center;
+				}
+				&opt-even {
+					justify-content: space-evenly;
+				}
+				@for $i from 1 through 10 {
+					&opt-ratio-#{$i}\:#{calc(10 - $i)} {
+						> * {
+							&:nth-child(odd) {
+								width: calc(10% * $i);
+							}
+							&:nth-child(even) {
+								width: calc(10% * (10 - $i));
+							}
+						}
+					}
+				}
+			}
+		}
+		@include sp {
+			&.sp\: {
+				&opt-center {
+					justify-content: center;
+					align-items: center;
+				}
+				&opt-center-x {
+					justify-content: center;
+				}
+				&opt-center-y {
+					align-items: center;
+				}
+				&opt-even {
+					justify-content: space-evenly;
+				}
+				@for $i from 1 through 10 {
+					&opt-ratio-#{$i}\:#{calc(10 - $i)} {
+						> * {
+							&:nth-child(odd) {
+								width: calc(10% * $i);
+							}
+							&:nth-child(even) {
+								width: calc(10% * (10 - $i));
+							}
+						}
+					}
+				}
+			}
+		}
+		> .u-d-fg-0 {
+			flex-grow: 0;
+		}
+		> .u-d-fg-1 {
+			flex-grow: 1;
+		}
+		> .u-d-fs-0 {
+			flex-shrink: 0;
+		}
+		> .u-d-fs-1 {
+			flex-shrink: 1;
+		}
+	}
+	&d {
+		&-f {
+			@include dfBase;
+		}
+		&-b {
+			display: block;
+		}
+		&-i {
+			display: inline;
+		}
+		&-ib {
+			display: inline-block;
+		}
+		&-c {
+			display: contents;
+		}
+		&-if {
+			display: inline-flex;
+		}
+		&-n {
+			display: none;
+		}
+	}
+	@include pc {
+		&pc\: {
+			&d-f {
+				@include dfBase;
+			}
+			&d-b {
+				display: block;
+			}
+			&d-i {
+				display: inline;
+			}
+			&d-ib {
+				display: inline-block;
+			}
+			&d-c {
+				display: contents;
+			}
+			&d-if {
+				display: inline-flex;
+			}
+			&d-n {
+				display: none;
+			}
+		}
+	}
+	@include sp {
+		&sp\: {
+			&d-f {
+				@include dfBase;
+			}
+			&d-b {
+				display: block;
+			}
+			&d-i {
+				display: inline;
+			}
+			&d-ib {
+				display: inline-block;
+			}
+			&d-c {
+				display: contents;
+			}
+			&d-if {
+				display: inline-flex;
+			}
+			&d-n {
+				display: none;
+			}
+		}
+	}
+
+	// ギャップ
+	@for $i from 0 through 20 {
+		&gap-#{$i * $num} {
+			gap: #{calc($i * $num / 10)}rem !important;
+		}
+	}
+	@include pc {
+		@for $i from 0 through 20 {
+			&pc\:gap-#{$i * $num} {
+				gap: #{calc($i * $num / 10)}rem !important;
+			}
+		}
+	}
+	@include sp {
+		@for $i from 0 through 20 {
+			&sp\:gap-#{$i * $num} {
+				gap: #{calc($i * $num / 10)}rem !important;
+			}
+		}
+	}
+
+	// youtube googlemapなど
+	&frame {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		&.opt {
+			&-ratio-9\:16 {
+				aspect-ratio: 9 / 16;
+			}
+			&-ratio-4\:3 {
+				aspect-ratio: 4 / 3;
+			}
+			&-ratio-16\:10 {
+				aspect-ratio: 16 / 10;
+			}
+			&-ratio-1\:1 {
+				aspect-ratio: 1 / 1;
+			}
+		}
+		@include pc {
+			&.pc\:opt {
+				&-ratio-9\:16 {
+					aspect-ratio: 9 / 16;
+				}
+				&-ratio-4\:3 {
+					aspect-ratio: 4 / 3;
+				}
+				&-ratio-16\:10 {
+					aspect-ratio: 16 / 10;
+				}
+				&-ratio-1\:1 {
+					aspect-ratio: 1 / 1;
+				}
+			}
+		}
+		@include sp {
+			&.sp\:opt {
+				&-ratio-9\:16 {
+					aspect-ratio: 9 / 16;
+				}
+				&-ratio-4\:3 {
+					aspect-ratio: 4 / 3;
+				}
+				&-ratio-16\:10 {
+					aspect-ratio: 16 / 10;
+				}
+				&-ratio-1\:1 {
+					aspect-ratio: 1 / 1;
+				}
+			}
+		}
+		iframe,
+		video {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+	}
+
+	// はみ出し
+	&stickout {
+		width: 100vw;
+		margin-left: calc(-1 * (50vw - 50%));
+	}
+	@include pc {
+		&pc\:stickout {
+			width: 100vw;
+			margin-left: calc(-1 * (50vw - 50%));
+		}
+	}
+	@include sp {
+		&sp\:stickout {
+			width: 100vw;
+			margin-left: calc(-1 * (50vw - 50%));
+		}
+	}
+
+	// タイトル
+	&title {
+		// タイトル1
+		&1 {
+		}
+	}
+
+	// ボタン
+	@mixin btnBase {
+		display: block;
+		line-height: calc(24 / 16);
+		cursor: pointer;
+		width: fit-content;
+		@include pc {
+			min-width: 30rem;
+			padding: 1.5rem 2rem;
+		}
+		@include sp {
+			min-width: 25rem;
+			padding: 1.2rem 1.5rem;
+		}
+		&-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			&.opt {
+				&-left {
+					align-items: flex-start;
+				}
+				&-right {
+					align-items: flex-end;
+				}
+				&-col2,
+				&-col3,
+				&-even {
+					align-items: stretch;
+					flex-direction: initial;
+					justify-content: initial;
+					> *[class*="btn"] {
+						min-width: initial;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+					}
+				}
+				&-col2 {
+					@include pc {
+						@include setColumn(2, 2.5rem);
+					}
+					@include sp {
+						@include setColumn(2, 1rem);
+					}
+				}
+				&-col3 {
+					@include pc {
+						@include setColumn(3, 3rem);
+					}
+					@include sp {
+						@include setColumn(3, 1rem);
+					}
+				}
+				&-even {
+					justify-content: space-evenly;
+					@include pc {
+						gap: 2.5rem;
+					}
+					@include sp {
+						gap: 1rem;
+					}
+					> *[class*="btn"] {
+						width: 100%;
+						flex-grow: 1;
+					}
+				}
+			}
+			@include pc {
+				&.pc\:opt {
+					&-left {
+						align-items: flex-start;
+					}
+					&-right {
+						align-items: flex-end;
+					}
+					&-col2,
+					&-col3,
+					&-even {
+						align-items: stretch;
+						flex-direction: initial;
+						justify-content: initial;
+						> *[class*="btn"] {
+							min-width: initial;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							flex-direction: column;
+						}
+					}
+					&-col2 {
+						@include setColumn(2, 2.5rem);
+					}
+					&-col3 {
+						@include setColumn(3, 3rem);
+					}
+					&-even {
+						justify-content: space-evenly;
+						gap: 2.5rem;
+						> *[class*="btn"] {
+							width: 100%;
+							flex-grow: 1;
+						}
+					}
+				}
+			}
+			@include sp {
+				&.sp\:opt {
+					&-left {
+						align-items: flex-start;
+					}
+					&-right {
+						align-items: flex-end;
+					}
+					&-col2,
+					&-col3,
+					&-even {
+						align-items: stretch;
+						flex-direction: initial;
+						justify-content: initial;
+						> *[class*="btn"] {
+							min-width: initial;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							flex-direction: column;
+						}
+					}
+					&-col2 {
+						@include setColumn(2, 1rem);
+					}
+					&-col3 {
+						@include setColumn(3, 1rem);
+					}
+					&-even {
+						justify-content: space-evenly;
+						gap: 1rem;
+						> *[class*="btn"] {
+							width: 100%;
+							flex-grow: 1;
+						}
+					}
+				}
+			}
+			&:not(.opt-col2, .pc\:opt-col2, .sp\:opt-col2, .opt-col3, .pc\:opt-col3, .sp\:opt-col3, .opt-even, .pc\:opt-even, .sp\:opt-even) {
+				> *[class*="btn"] + *[class*="btn"] {
+					margin-top: 2rem;
+				}
+			}
+			&.pc\:opt {
+				&-col2,
+				&-col3,
+				&-even {
+					@include sp {
+						> *:not(:first-child) {
+							margin-top: 1rem;
+						}
+					}
+				}
+			}
+			&.sp\:opt {
+				&-col2,
+				&-col3,
+				&-even {
+					@include pc {
+						> *:not(:first-child) {
+							margin-top: 1rem;
+						}
+					}
+				}
+			}
+		}
+		&.opt {
+			&-inactive {
+				pointer-events: none !important;
+				background: rgba(160, 160, 160, 1) !important;
+				color: rgba(191, 191, 191, 1) !important;
+				border-color: rgba(160, 160, 160, 1);
+			}
+			&-full {
+				width: 100%;
+			}
+			&-small {
+				@include pc {
+					min-width: 20rem;
+					padding: 2rem;
+				}
+				@include sp {
+					min-width: 15rem;
+					padding: 1.2rem 1.5rem;
+				}
+			}
+			&-arrow-up {
+				&::after {
+					rotate: -90deg;
+				}
+			}
+			&-arrow-down {
+				&::after {
+					rotate: 90deg;
+				}
+			}
+		}
+		@include pc {
+			&.pc\:opt {
+				&-full {
+					width: 100%;
+				}
+			}
+		}
+		@include sp {
+			&.sp\:opt {
+				&-full {
+					width: 100%;
+				}
+			}
+		}
+	}
+	&btn {
+		border-radius: 1rem;
+		background-color: peachpuff;
+		color: white;
+		text-align: center;
+		transition: opacity 0.6s $ease;
+		@include btnBase;
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+
+	// リンク
+	&link {
+		color: peachpuff;
+		transition: opacity ease 0.6s;
+
+		&:hover {
+			opacity: 0.5;
+		}
+
+		&1 {
+			transition: opacity ease 0.6s;
+			color: $red;
+			background: linear-gradient(to right, currentColor 0%, currentColor 100%);
+			background-position: 0 100%;
+			background-repeat: no-repeat;
+			background-size: 100% 1px;
+			&:hover {
+				opacity: 0.5;
+			}
+		}
+
+		&2 {
+			transition: opacity ease 0.6s;
+			background: linear-gradient(to right, currentColor 0%, currentColor 100%);
+			background-position: 0 100%;
+			background-repeat: no-repeat;
+			background-size: 0% 1px;
+			transition: background-size 0.3s ease-in-out;
+			&:hover {
+				background-size: 100% 1px;
+			}
+		}
+
+		&3 {
+			transition: all $ease 0.6s;
+			opacity: 1;
+			@include hover {
+				opacity: 0.5;
+			}
+			&.opt-inactive {
+				pointer-events: none;
+				opacity: 0.5;
+			}
+		}
+	}
+	&link2,
+	&link1,
+	&link {
+		&.opt {
+			&-inactive {
+				pointer-events: none;
+				color: gray;
+			}
+			&-arrow-up {
+				&::after {
+					position: relative;
+					rotate: -90deg;
+				}
+			}
+			&-arrow-down {
+				&::after {
+					position: relative;
+					rotate: 90deg;
+				}
+			}
+		}
+	}
+
+	// グレーアウトエリア
+	&grayout {
+		position: relative;
+		pointer-events: none;
+		z-index: 1;
+		&::after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 100%;
+			background: rgba(#000000, 0.5);
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 2;
+		}
+		&-text {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: 3;
+			translate: -50% -50%;
+			color: white;
+		}
+	}
+
+	// ボックス
+	&box {
+		background-color: $gray;
+		@include pc {
+			padding: 4rem;
+		}
+		@include sp {
+			padding: 2rem;
+		}
+		&-title {
+			font-weight: 700;
+			line-height: calc(24 / 16);
+			font-size: 1.6rem;
+			@include pc {
+				margin-bottom: 2rem;
+			}
+			@include sp {
+				margin-bottom: 1rem;
+			}
+		}
+		&.opt {
+			&-attn {
+				background-color: peachpuff;
+				color: $red;
+			}
+		}
+
+		&1 {
+			border: 3px solid currentColor;
+			background-color: white;
+			@include pc {
+				padding: 4rem;
+				border-radius: 2rem;
+			}
+			@include sp {
+				padding: 2rem;
+				border-radius: 1rem;
+			}
+		}
+	}
+
+	// テーブル
+	@mixin tableBase {
+		table,
+		td,
+		th {
+			border-collapse: collapse;
+		}
+		&.opt {
+			&-full {
+				width: 100%;
+				table {
+					width: 100%;
+				}
+			}
+			&-nowrap {
+				overflow: auto;
+				width: 100%;
+				th,
+				td {
+					white-space: nowrap;
+				}
+			}
+			&-nowrap-th {
+				overflow: auto;
+				width: 100%;
+				th {
+					white-space: nowrap;
+				}
+				td {
+					min-width: 100vw;
+				}
+			}
+			&-center {
+				&-th {
+					th {
+						text-align: center;
+					}
+				}
+				&-np2 {
+					tr > *:nth-child(n + 2) {
+						text-align: center;
+					}
+				}
+				&-np3 {
+					tr > *:nth-child(n + 3) {
+						text-align: center;
+					}
+				}
+			}
+		}
+		@include pc {
+			&.pc\:opt {
+				&-full {
+					width: 100%;
+					table {
+						width: 100%;
+					}
+				}
+				&-nowrap {
+					overflow: auto;
+					width: 100%;
+					th,
+					td {
+						white-space: nowrap;
+					}
+				}
+				&-nowrap-th {
+					overflow: auto;
+					width: 100%;
+					th {
+						white-space: nowrap;
+					}
+					td {
+						min-width: 100vw;
+					}
+				}
+			}
+		}
+		@include sp {
+			&.sp\:opt {
+				&-full {
+					width: 100%;
+					table {
+						width: 100%;
+					}
+				}
+				&-nowrap {
+					overflow: auto;
+					width: 100%;
+					th,
+					td {
+						white-space: nowrap;
+					}
+				}
+				&-nowrap-th {
+					overflow: auto;
+					width: 100%;
+					th {
+						white-space: nowrap;
+					}
+					td {
+						min-width: 100vw;
+					}
+				}
+			}
+		}
+	}
+	&table {
+		@include tableBase;
+		th,
+		td {
+			padding: 1.5rem;
+		}
+		th {
+			font-weight: 700;
+			background: $red;
+			color: white;
+			border: 1px solid white;
+			text-align: inherit;
+		}
+		td {
+			background: white;
+			border: 1px solid $gray;
+		}
+		thead {
+			th {
+				border-top: none;
+				&:first-child {
+					border-left: none;
+				}
+				&:last-child {
+					border-right: none;
+				}
+			}
+		}
+		tbody {
+			tr {
+				th:first-child {
+					border-left: none;
+				}
+				&:first-child {
+					th {
+						border-top: none;
+					}
+				}
+				&:last-child {
+					th {
+						border-bottom: none;
+					}
+				}
+			}
+		}
+
+		&1 {
+			overflow: auto;
+			@include tableBase;
+			th,
+			td {
+				line-height: calc(21 / 14);
+				border: 1px solid currentColor;
+				@include pc {
+					padding: 2rem;
+				}
+				@include sp {
+					padding: 1rem;
+				}
+
+				&.u-bdr-none {
+					+ * {
+						border-left: none;
+					}
+				}
+			}
+			th {
+				text-align: initial;
+				font-weight: bold;
+			}
+			td {
+			}
+		}
+	}
+
+	// インナー
+	&inner {
+		$inner-width: 90rem;
+		$inner-padding: 8rem;
+		@include pc {
+			max-width: calc($inner-width + $inner-padding * 2);
+			margin-left: auto;
+			margin-right: auto;
+			padding-left: $inner-padding;
+			padding-right: $inner-padding;
+		}
+		@include sp {
+			padding-left: $inner-paddingX-sp;
+			padding-right: $inner-paddingX-sp;
+		}
+
+		// インナー1
+		&1 {
+			$inner1-width: 120rem;
+			$inner1-padding: 8rem;
+			@include pc {
+				max-width: calc($inner1-width + $inner1-padding * 2);
+				margin-left: auto;
+				margin-right: auto;
+				padding-left: $inner-padding;
+				padding-right: $inner-padding;
+			}
+			@include sp {
+				padding-left: $inner-paddingX-sp;
+				padding-right: $inner-paddingX-sp;
+			}
+		}
+
+		// インナー2
+		&2 {
+			$inner2-width: 136rem;
+			$inner2-padding: 4rem;
+			@include pc {
+				max-width: calc($inner2-width + $inner2-padding * 2);
+				margin-left: auto;
+				margin-right: auto;
+				padding-left: $inner2-padding;
+				padding-right: $inner2-padding;
+			}
+			@include sp {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+		}
+	}
+
+	// 読み物テキスト
+	&desc {
+		line-height: calc(30 / 16);
+	}
+
+	// 定義リスト
+	&def {
+		&-term {
+		}
+	}
+	&def-term + &def-desc {
+		margin-top: 0.5rem;
+	}
+	&def-desc + &def-term {
+		margin-top: 3rem;
+	}
+
+	// マーカー
+	&marker {
+		background: linear-gradient(transparent 50%, rgba(peachpuff, 0.5) -50%);
+	}
+
+	// サイズ
+	&size {
+		&-l,
+		&-m,
+		&-s {
+			img {
+				@include pc {
+					width: 100%;
+					max-width: initial;
+				}
+			}
+		}
+		&-s {
+			@include pc {
+				width: 32rem;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		&-m {
+			@include pc {
+				width: 43rem;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		&-l {
+			@include pc {
+				width: 64rem;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		&-full {
+			@include pc {
+				width: 100%;
+			}
+		}
+	}
+}
