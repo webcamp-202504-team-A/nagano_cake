@@ -11,13 +11,9 @@ $font: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", "Noto Sans
 // カラー：数字が大きいほど色が濃い（定礎以降の追加カラーはこのルールは適用しない）
 $black: #000;
 $gray: #eee;
-$red: #aa0000;
-:root {
-  --c-white: white;
-  --c-gray: #eee;
-  --c-black: $black;
-  --c-red: $red;
-}
+$red: #fa7c7c;
+$green: #7ae48e;
+$blue: #59deff;
 
 // サイト横幅
 $w-site: 1200px;
@@ -480,12 +476,47 @@ body {
       background-color: white !important;
       color: $black;
     }
+    &-gray {
+      background-color: $gray !important;
+      color: $black;
+    }
+    &-red {
+      background-color: $red !important;
+      color: white;
+    }
+    &-green {
+      background-color: $green !important;
+      color: white;
+    }
+    &-blue {
+      background-color: $blue !important;
+      color: white;
+    }
+    &-black {
+      background-color: $black !important;
+      color: white;
+    }
 	}
 
 	// 文字色
 	&c {
     &-white {
       color: white !important;
+    }
+    &-gray {
+      color: $gray !important;
+    }
+    &-red {
+      color: $red !important;
+    }
+    &-green {
+      color: $green !important;
+    }
+    &-blue {
+      color: $blue !important;
+    }
+    &-black {
+      color: $black !important;
     }
 	}
 
@@ -655,6 +686,21 @@ body {
 	&bdc {
     &-white {
       border-color: white !important;
+    }
+    &-gray {
+      border-color: $gray !important;
+    }
+    &-red {
+      border-color: $red !important;
+    }
+    &-green {
+      border-color: $green !important;
+    }
+    &-blue {
+      border-color: $blue !important;
+    }
+    &-black {
+      border-color: $black !important;
     }
 	}
 
