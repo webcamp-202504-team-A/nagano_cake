@@ -1,16 +1,21 @@
-<header>
-  <nav>
-    <div>
-      <%= link_to "LOGO", admin_root_path %>
-    </div>
+<header class="header">
+  <div class="header-row">
+     <figure class="header-logo">
+        <%= link_to admin_root_path do %>
+          <img src="https://placehold.jp/200x100.png" alt="ロゴ画像" fetchpriority="high" width="100" height="50">
+        <% end %>
+      </figure>
 
-    <ul class="nav-links">
-      <li><%= link_to "商品一覧", admin_items_path %></li>
-      <li><%= link_to "会員一覧", admin_customers_path %></li>
-      <li><%= link_to "注文履歴一覧", admin_root_path %></li>
-      <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
-      <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-    </ul>
-
-  </nav>
+      <nav class="header-nav">
+        <div class="header-btns-wrapper">
+          <ul class="header-btns">
+            <li><%= link_to "商品一覧", admin_items_path, class: "u-btn-1 opt-small-1" %></li>
+            <li><%= link_to "会員一覧", admin_customers_path, class: "u-btn-1 opt-small-1" %></li>
+            <li><%= link_to "注文履歴一覧", admin_root_path, class: "u-btn-1 opt-small-1" %></li>
+            <li><%= link_to "ジャンル一覧", admin_genres_path, class: "u-btn-1 opt-small-1" %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "u-btn-1 opt-small-1" %></li>
+          </ul>
+        </div>
+      </nav>
+  </div>
 </header>

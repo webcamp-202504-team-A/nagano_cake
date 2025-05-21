@@ -11,6 +11,7 @@ $font: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", "Noto Sans
 // カラー：数字が大きいほど色が濃い（定礎以降の追加カラーはこのルールは適用しない）
 $black: #000;
 $gray: #eee;
+$gray1: #c0c0c0;
 $red: #fa7c7c;
 $green: #7ae48e;
 $blue: #59deff;
@@ -1514,12 +1515,12 @@ body {
     &-1{
       border-radius: 1rem;
       background-color: white;
-      border: 2px solid $gray;
+      border: 2px solid $gray1;
       text-align: center;
       transition: background-color 0.6s $ease;
       @include btnBase;
       &:hover {
-        background-color: $gray;
+        background-color: $gray1;
       }
     }
 	}
@@ -1886,6 +1887,39 @@ body {
 		}
 		&-price{
 			font-weight: bold;
+		}
+	}
+}
+
+body{
+
+}
+.header {
+	background: white;
+	position: sticky;
+	top: 0;
+	left: 0;
+	border-bottom: 3px solid $gray1;
+	padding: 1.5rem;
+	&-row{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	&-logo{
+		width: 10rem;
+	}
+	&-nav{
+		max-width: calc(100% - 10rem - 3rem);
+	}
+	&-btns-wrapper{
+		overflow: auto;
+	}
+	&-btns {
+		display: flex;
+		gap: 1rem;
+		.u-btn-1 {
+			white-space: nowrap;
 		}
 	}
 }
