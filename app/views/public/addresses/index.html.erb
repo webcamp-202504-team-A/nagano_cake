@@ -36,21 +36,16 @@
       <% @addresses.each do |address| %>
       <tr>
         <td><%= address.postal_code %></td>
-      </tr>
-      <tr>
         <td><%= address.address %></td>
-      </tr>
-      <tr>
         <td><%= address.name %></td>
-      </tr>
-      <tr>
-        <span>
-          <%= link_to "編集する", edit_address_path(current_user.id) class: "btn btn-success"%>
-        </span>
-        <span>
-          <%= link_to "削除する", address_path(current_user.id), method: :delete, class: "btn btn-danger"%>
-        </span>
-      </tr>
+        <td>
+          <span>
+            <%= link_to "編集する", edit_address_path(current_customer.id), class: ""%>
+          </span>
+          <span>
+            <%= link_to "削除する", address_path(current_customer.id), method: :delete, class: ""%>
+          </span>
+        </td>
       <% end %>
     </tbody>
   </table>
