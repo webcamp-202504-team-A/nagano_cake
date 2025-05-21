@@ -7,11 +7,13 @@ class Public::CartItemsController < ApplicationController
     @cart_item.customer_id = current_customer.id
 
     if @cart_item.save
-      redirect_to cart_items_path
+      flash[:notice] = "カートに商品を追加しました"
     else
-      @item = Item.find(params[:id])
-      redirect_to request.referer
+      flash[:alert] = "追加に失敗しました"
     end
+
+    @item = Item.find(@cart_item[:item_id])
+    redirect_to request.referer
   end
 
   private
