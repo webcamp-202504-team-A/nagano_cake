@@ -1892,6 +1892,72 @@
   </section>
   <!-- end アイテム -->
 
+  <!-- フォームのフィールド -->
+  <section>
+    <div class="this-inner">
+      <div class="title___">フォームのフィールド</div>
+
+      <!-- コンテント -->
+      <div class="content___ u-vert-10">
+        <%= form_with do |f| %>
+          <div class="u-field-row">
+            <p class="u-field-title">名前</p>
+            <div class="u-field-double">
+              <div class="u-field">
+                <%= f.label :first_name,"(名)" %><br />
+                <%= f.text_field :first_name, placeholder: "道子", class: "u-form-textfield opt-full" %>
+              </div>
+              <div class="u-field">
+                <%= f.label :last_name_kana,"(セイ)" %><br />
+                <%= f.text_field :last_name_kana, placeholder: "レイワ", class: "u-form-textfield opt-full" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="u-field-row">
+            <p class="u-field-title">メールアドレス</p>
+            <div class="u-field">
+              <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class: "u-form-textfield opt-full" %>
+            </div>
+          </div>
+          <% end %>
+      </div>
+      <!-- end コンテント -->
+
+      <!-- コード -->
+      <figure class="code___">
+        <pre class="prettyprint">&lt;div class=&quot;u-field-row&quot;&gt;
+  &lt;p class=&quot;u-field-title&quot;&gt;名前&lt;/p&gt;
+  &lt;div class=&quot;u-field-double&quot;&gt;
+    &lt;div class=&quot;u-field&quot;&gt;
+      &lt;%= f.label :first_name,&quot;(名)&quot; %&gt;&lt;br /&gt;
+      &lt;%= f.text_field :first_name, placeholder: &quot;道子&quot;, class: &quot;u-form-textfield opt-full&quot; %&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;u-field&quot;&gt;
+      &lt;%= f.label :last_name_kana,&quot;(セイ)&quot; %&gt;&lt;br /&gt;
+      &lt;%= f.text_field :last_name_kana, placeholder: &quot;レイワ&quot;, class: &quot;u-form-textfield opt-full&quot; %&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;u-field-row&quot;&gt;
+  &lt;p class=&quot;u-field-title&quot;&gt;メールアドレス&lt;/p&gt;
+  &lt;div class=&quot;u-field&quot;&gt;
+    &lt;%= f.email_field :email, autocomplete: &quot;email&quot;, placeholder: &quot;sample@example.com&quot;, class: &quot;u-form-textfield opt-full&quot; %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </figure>
+      <!-- end コード -->
+
+      <!-- その他 -->
+      <div class="other___">
+        <p></p>
+      </div>
+      <!-- end その他 -->
+    </div>
+  </section>
+  <!-- end フォームのフィールド -->
+
   <!-- テンプレ -->
   <section>
     <div class="this-inner">
