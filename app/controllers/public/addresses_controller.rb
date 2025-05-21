@@ -1,36 +1,45 @@
 class Public::AddressesController < ApplicationController
   # TODO: ログインしていない時にアクセスするとログイン画面へ遷移
-  # before_action :authenticate_user!
+  # before_action :authenticate_customer!
 
   # 他人のアクセス防止
 
   def index
     @new_address = Address.new
-    
-    # customer = Customer.find(current_user.id)
-    # @address = customer.address
-
-    @addresses = current_user.addresses
+    @addresses = current_customer.addresses
   end
 
   def edit
+    @address = Address.find(params[:id])
+    p "🦐#{@address.id}"
   end
 
   def create
     @new_address = Address.new(address_params)
-    @new_address.customer_id = current_user.id
+    @new_address.customer_id = current_customer.id
 
     if @new_address.save
       redirect_to request.referer
     else
+      @addresses = current_customer.addresses
       render "index"
     end
   end
 
   def update
+    @address = Address.find(params[:id])
+
+    if @address.update(address_params)
+      redirect_to addresses_path
+    else
+      render "edit"
+    end
   end
 
-  def detroy
+  def destroy
+    address = Address.find(params[:id])
+    address.destroy
+    redirect_to addresses_path
   end
 
   private
