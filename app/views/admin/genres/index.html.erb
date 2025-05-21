@@ -4,7 +4,7 @@
   <div>
     <%= f.label :name, "ジャンル名" %>
     <%= f.text_field :name, placeholder: "ジャンル名" %>
-    <%= f.submit "新規登録", class: "btn btn-success" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 
@@ -20,7 +20,7 @@
       <tr>
         <td><%= genre.name %></td>
         <td>
-          <%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-success" %>
+          <%= link_to "編集する", edit_admin_genre_path(genre) %>
         </td>
       </tr>
     <% end %>
