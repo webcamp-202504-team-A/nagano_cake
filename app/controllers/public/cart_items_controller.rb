@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = current_customer.cart_items
-    .all
+    @cart_items = current_customer.cart_items.all
     # byebug
     @total_fee = @cart_items.sum do |cart_item|
       cart_item.amount * cart_item.item.price_with_tax
