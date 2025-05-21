@@ -1,0 +1,50 @@
+<section class="u-pY-50">
+  <div class="u-inner1">
+    <h1 class="u-title3">
+      <span>ショッピングカート</span>
+    </h1>
+
+    <div class="u-btn-wrapper opt-right">
+      <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "u-btn opt-small u-bg-red u-fw-b"%>
+    </div>
+
+    <div class="u-table pc:opt-full sp:opt-nowrap u-mt-20">
+      <table>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="u-table u-mt-20 opt-right">
+      <table>
+        <tbody>
+          <tr>
+            <th>合計金額</th>
+            <td>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="u-btn-wrapper opt-col2 u-size-l u-mt-30">
+      <%= link_to "買い物を続ける", items_path, class: "u-btn u-bg-blue u-fw-b"%>
+      <%= link_to "情報入力に進む", new_order_path, class: "u-btn u-fw-b"%>
+    </div>
+  </div>
+</section>
