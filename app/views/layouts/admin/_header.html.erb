@@ -1,0 +1,16 @@
+<header>
+  <nav class="admin-nav">
+    <div class="btn btn-outline-success">
+      <%= link_to "LOGO", admin_root_path %>
+    </div>
+
+    <ul class="nav-links">
+      <li class="btn btn-outline-info"><%= link_to "商品一覧", admin_items_path %></li>
+      <li class="btn btn-outline-info"><%= link_to "会員一覧", admin_customers_path %></li>
+      <li class="btn btn-outline-info"><%= link_to "注文履歴一覧", admin_root_path %></li>
+      <li class="btn btn-outline-info"><%= link_to "ジャンル一覧", admin_genres_path %></li>
+      <li class="btn btn-outline-info"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+    </ul>
+
+  </nav>
+</header>
