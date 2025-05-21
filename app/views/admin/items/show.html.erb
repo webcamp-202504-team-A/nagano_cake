@@ -2,15 +2,15 @@
 
 <div>
   <div>
-    <%= image_tag get_image(@item), width: 300 %>
+    <%= image_tag @item.get_image, width: 300 %>
   </div>
 
   <div>
     <p>商品名<%= @item.name %></p>
     <p>商品説明<%= @item.introduction %></p>
     <p>ジャンル<%= @item.genre.name %></p>
-    <p>税込価格</p><br>
-    <p>（税抜価格)¥<%= number_with_delimiter(@item.price_with_tax) %>（<%= number_to_currency(@item.price_without_tax) %>）</p>
+    <p>税込価格</p>
+    <p>（税抜価格)<%= number_with_delimiter(@item.price_with_tax) %>（<%= number_to_currency(@item.price_without_tax) %>）</p>
 
     <p>
       販売ステータス
