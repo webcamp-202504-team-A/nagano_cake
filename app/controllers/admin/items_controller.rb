@@ -7,11 +7,15 @@ class Admin::ItemsController < Admin::BaseController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to admin_items_path, notice: "商品を登録しました"
+      redirect_to admin_item_path(@item), notice: "商品を登録しました"
     else
       @genres = Genre.all
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
