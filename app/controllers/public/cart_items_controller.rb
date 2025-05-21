@@ -1,11 +1,16 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items
+    .all
     # byebug
+    @total_fee = @cart_items.sum do |cart_item|
+      cart_item.amount * cart_item.item.price_with_tax
+    end
   end
 
   def create
-    cart_item = CartItem.new(cart_item_params)
+    cart_item = current_customer.cart_items
+    .new(cart_item_params)
     existing_item = current_customer.cart_items.find_by(item_id: cart_item_params[:item_id])
 
     if existing_item

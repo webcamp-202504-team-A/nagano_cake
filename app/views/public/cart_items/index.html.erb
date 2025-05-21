@@ -14,17 +14,40 @@
           <tr>
             <th>商品名</th>
             <th>単価(税込)</th>
-            <th>数量</th>
+            <th width="15%">数量</th>
             <th>小計</th>
-            <th></th>
+            <th width="10%"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="u-fw-b">
+          <% @cart_items.each do |cart_item| %>
           <tr>
             <td>
-
+              <figure class="cart_item-figure">
+                <%= image_tag cart_item.item.get_image, class: "cart_item-image"%>
+                <figcaption class="cart_item-name"><%= cart_item.item.name %></figcaption>
+              </figure>
+            </td>
+            <td>
+              <%= number_with_delimiter(cart_item.item.price_with_tax) %>
+            </td>
+            <td>
+              <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+                <%= f.hidden_field :item_id, :value => cart_item.item.id %>
+                <div class="u-d-f opt-center-y u-gap-10">
+                  <%= f.select :amount, (1..10).to_a %>
+                  <%= f.submit "変更", class: "u-btn opt-small-1" %>
+                </div>
+              <% end %>
+            </td>
+            <td>
+              <%= number_with_delimiter(cart_item.item.price_with_tax * cart_item.amount) %>
+            </td>
+            <td>
+              <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "u-btn opt-small-1 u-bg-red u-fw-b opt-full"%>
             </td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -35,7 +58,7 @@
           <tr>
             <th>合計金額</th>
             <td>
-
+              <strong><%= number_with_delimiter(@total_fee) %></strong>
             </td>
           </tr>
         </tbody>

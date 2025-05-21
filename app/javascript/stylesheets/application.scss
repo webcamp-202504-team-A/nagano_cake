@@ -1962,3 +1962,19 @@ body {
 		}
 	}
 }
+
+// カートアイテム系
+.cart_item{
+	&-figure{
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+  &-image{
+    width: 8rem;
+  }
+	&-name {
+		font-weight: bold;
+		max-width: 10em;
+	}
+}
