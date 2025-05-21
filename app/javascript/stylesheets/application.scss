@@ -111,7 +111,7 @@ html {
 body {
 	font-family: $font;
 	letter-spacing: 0.1em;
-	line-height: 2;
+	line-height: 1.8;
 	color: $black;
 	word-break: break-all;
 	@include pc {
@@ -1863,4 +1863,29 @@ body {
       }
     }
   }
+
+	// アイテム
+	&item {
+		&s{
+			@include pc {
+				@include setColumn(4, 2rem, 4rem)
+			}
+			@include sp {
+				@include setColumn(2, 1.5rem, 4rem)
+			}
+		}
+		&-name{
+			font-weight: bold;
+			margin-top: 1rem;
+			@include pc{
+				font-size: 1.8rem;
+			}
+			@include sp{
+				font-size: 1.6rem;
+			}
+		}
+		&-price{
+			font-weight: bold;
+		}
+	}
 }
