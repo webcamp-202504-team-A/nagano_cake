@@ -14,7 +14,7 @@
           <tr>
             <td><%= customer.id %></td>
             <td>
-              <%= link_to "#{customer.last_name}#{customer.first_name}", admin_customer_path(customer) , style: "text-decoration: underline;" %>
+              <%= link_to "#{customer.last_name}#{customer.first_name}", admin_customer_path(customer) %>
             </td>
             <td><%= customer.email %></td>
             <td>

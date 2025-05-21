@@ -1,4 +1,12 @@
 class Admin::ItemsController < Admin::BaseController
+  def index
+    @items = Item.page(params[:page]).per(10)
+  end
+
+  def show
+    @item = Item.find(params[:id])
+  end
+
   def new
     @item = Item.new
     @genres = Genre.all
@@ -14,9 +22,6 @@ class Admin::ItemsController < Admin::BaseController
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
 
   private
 
