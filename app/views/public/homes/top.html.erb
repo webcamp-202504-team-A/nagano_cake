@@ -1,3 +1,60 @@
+<div class="">
+  <figure class="">
+    <img src="https://placehold.jp/3d4070/ffffff/1920x1080.png?text=MV" alt="メインビジュアル" width="1920" height="1080" fetchpriority="high"/>
+  </figure>
+  <div class="u-mt-80">
+    <div class="u-inner2 u-ta-c">
+      <h1><strong>ようこそ、ながのCAKEへ!</strong></h1>
+      <p>
+        このサイトは、<br class="u-sp">ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
+      </p>
+    </div>
+  </div>
+</div>
 
-<h1>Topページ<h1>
-  
+<section class="u-pY-80">
+  <div class="u-inner2">
+    <h2 class="u-title2 u-mb-20">新着商品</h2>
+    <ul class="u-items">
+      <li class="u-item">
+        <%= link_to "/" do %>
+          <figure>
+            <%= image_tag "https://placehold.jp/600x400.png" %>
+            <figcaption class="u-item-name">商品名</figcaption>
+          </figure>
+          <p class="u-item-price">¥0,000</p>
+        <% end %>
+      </li>
+      <li class="u-item">
+        <%= link_to "/" do %>
+          <figure>
+            <%= image_tag "https://placehold.jp/600x400.png" %>
+            <figcaption class="u-item-name">商品名</figcaption>
+          </figure>
+          <p class="u-item-price">¥0,000</p>
+        <% end %>
+      </li>
+      <li class="u-item">
+        <%= link_to "/" do %>
+          <figure>
+            <%= image_tag "https://placehold.jp/600x400.png" %>
+            <figcaption class="u-item-name">商品名</figcaption>
+          </figure>
+          <p class="u-item-price">¥0,000</p>
+        <% end %>
+      </li>
+      <li class="u-item">
+        <%= link_to "/" do %>
+          <figure>
+            <%= image_tag "https://placehold.jp/600x400.png" %>
+            <figcaption class="u-item-name">商品名</figcaption>
+          </figure>
+          <p class="u-item-price">¥0,000</p>
+        <% end %>
+      </li>
+    </ul>
+    <p class="u-ta-r u-mt-20"><%= link_to "全ての商品を見る>", "/", class: "u-link" %></p>
+  </div>
+</section>
