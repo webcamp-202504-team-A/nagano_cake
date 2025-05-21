@@ -13,4 +13,8 @@ class Address < ApplicationRecord
       message: "桁で入力してください"
     }
   validates :address, presence: true
+
+  def address_display
+    '〒' + postal_code + '' + address + '' + name
+  end
 end
