@@ -1,0 +1,24 @@
+
+[1mFrom:[0m /home/ec2-user/environment/nagano_cake/app/controllers/public/orders_controller.rb:12 Public::OrdersController#confirm:
+
+    [1;34m11[0m: [32mdef[0m [1;34mconfirm[0m
+ => [1;34m12[0m:   binding.pry
+    [1;34m13[0m:   [1;34m# @order = Order.new(order_params)[0m
+    [1;34m14[0m:   [1;34m# @order.customer = current_customer[0m
+    [1;34m15[0m:   [1;34m# case params[:order][:address_type][0m
+    [1;34m16[0m:   [1;34m# when  "member_address"[0m
+    [1;34m17[0m:   [1;34m#   @order.postal_code = current_customer.postal_code[0m
+    [1;34m18[0m:   [1;34m#   @order.address = current_customer.address[0m
+    [1;34m19[0m:   [1;34m#   @order.name = current_customer.last_name + current_customer.first_name[0m
+    [1;34m20[0m:   [1;34m# when "saved_address"[0m
+    [1;34m21[0m:   [1;34m#   @address = Address.find(params[:order][:address_id])[0m
+    [1;34m22[0m:   [1;34m#   @order.postal_code = @address.postal_code[0m
+    [1;34m23[0m:   [1;34m#   @order.address = @address.address[0m
+    [1;34m24[0m:   [1;34m#   @order.name = @address.name[0m
+    [1;34m25[0m:   [1;34m# when "new_address"[0m
+    [1;34m26[0m:   [1;34m# else[0m
+    [1;34m27[0m:   [1;34m#   flash[:alert] = "住所の選択に問題があります"[0m
+    [1;34m28[0m:   [1;34m#   redirect_to new_order_path[0m
+    [1;34m29[0m:   [1;34m# end[0m
+    [1;34m30[0m: [32mend[0m
+

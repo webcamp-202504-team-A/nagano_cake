@@ -1,0 +1,33 @@
+
+<h2>注文情報確認</h2>
+  <% @order.customer.cart_items.each do |cart_item| %>
+    <p>商品名</p>
+      <%= cart_item.item.name %>
+    <p>数量</p>
+      <%= cart_item.amount %>
+    <p>単価（税込)</p>
+      <%= number_with_delimiter(cart_item.item.price_with_tax) %>
+    <p>小計</p>
+      <%= number_with_delimiter(cart_item.item.price_with_tax * cart_item.amount) %>
+  <% end %>
+
+  <p>送料</p>
+    <%= number_with_delimiter(800) %>
+
+  <p>商品合計</p>
+    <% total_price = @order.customer.cart_items.sum do |cart_item| 
+       cart_item.item.price_with_tax * cart_item.amount
+    end %>
+
+    <%= number_with_delimiter(total_price) %>
+    
+  <p>請求金額</p>
+    <%= number_with_delimiter(800 + total_price.to_i) %>
+    
+  <h3>支払方法</h3>
+    <%= @order.payment_method_i18n %>
+
+  <h3>お届け先</h3>
+    〒<%= @order.postal_code + @order.address + @order.name %>
+  
+  <%= link_to %>
