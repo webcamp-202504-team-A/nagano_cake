@@ -32,10 +32,19 @@ class Public::CartItemsController < ApplicationController
     redirect_to request.referer
   end
 
+  def update
+    cart_item = CartItem.find(params[:id])
+    if cart_item.update(cart_item_params)
+      flash[:notice] = "数量を変更しました"
+    else
+      flash[:alert] = "数量の変更に失敗しました"
+    end
+    redirect_to cart_items_path
+  end
+
   private
 
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
-    
   end
 end
