@@ -11,9 +11,7 @@
   <p>支払金額</p>
     <%= number_with_delimiter(order.total_payment) %>円
   <p>ステータス</p>
-    <%= order.status %>
-    <%# 注文ステータスが実装されたら以下↓に変える %>
-    <%# <%= order.status_i18n %> 
+    <%= order.status_i18n %> 
   <p>注文詳細</p>
   <%= link_to "表示する", order_path(order.id) %>
 <% end %>
