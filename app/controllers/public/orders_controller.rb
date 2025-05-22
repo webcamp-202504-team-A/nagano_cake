@@ -47,7 +47,7 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-  def complate
+  def complete
   end
 
   def index
