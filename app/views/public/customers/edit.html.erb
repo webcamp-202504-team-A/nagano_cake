@@ -1,69 +1,66 @@
 <section class="u-pY-50">
   <div class="u-inner">
-  
-  <h1 class="u-title3 u-mb-30">
-    <span>会員情報編集</span>
-  </h1>
+    <h1 class="u-title3 u-mb-30">
+      <span>会員情報編集</span>
+    </h1>
 
-  <%= form_with model:@customer, url:customers_information_path do |f| %>
-    <div class="u-field-row">
-      <p class="u-field-title">氏名</p>
-      <div class="u-field-double">
-        <div class="u-field">
-          <%= f.text_field :last_name, autofocus: true, class: "u-form-textfield" %>
-        </div>
-        <div class="u-field">
-          <%= f.text_field :first_name, class: "u-form-textfield" %>
+    <%= form_with model:@customer, url:customers_information_path do |f| %>
+      <div class="u-field-row">
+        <p class="u-field-title">氏名</p>
+        <div class="u-field-double">
+          <div class="u-field">
+            <%= f.text_field :last_name, autofocus: true, class: "u-form-textfield" %>
+          </div>
+          <div class="u-field">
+            <%= f.text_field :first_name, class: "u-form-textfield" %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="u-field-row">
-      <p class="u-field-title">フリガナ</p>
-      <div class="u-field-double">
-        <div class="u-field">
-          <%= f.text_field :last_name_kana, class: "u-form-textfield" %>
-        </div>
-        <div class="u-field">
-          <%= f.text_field :first_name_kana, class: "u-form-textfield" %>
+      <div class="u-field-row">
+        <p class="u-field-title">フリガナ</p>
+        <div class="u-field-double">
+          <div class="u-field">
+            <%= f.text_field :last_name_kana, class: "u-form-textfield" %>
+          </div>
+          <div class="u-field">
+            <%= f.text_field :first_name_kana, class: "u-form-textfield" %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="u-field-row">
-      <p class="u-field-title">郵便番号</p>
-        <div class="u-field">
-          <%= f.text_field :postal_code, class: "u-form-textfield" %>
-        </div>
-    </div>
+      <div class="u-field-row">
+        <p class="u-field-title">郵便番号</p>
+          <div class="u-field">
+            <%= f.text_field :postal_code, class: "u-form-textfield" %>
+          </div>
+      </div>
 
-    <div class="u-field-row">
-      <p class="u-field-title">住所</p>
-        <div class="u-field">
-          <%= f.text_field :address, class: "u-form-textfield opt-full" %>
-        </div>
-    </div>
+      <div class="u-field-row">
+        <p class="u-field-title">住所</p>
+          <div class="u-field">
+            <%= f.text_field :address, class: "u-form-textfield opt-full" %>
+          </div>
+      </div>
 
-    <div class="u-field-row">
-      <p class="u-field-title">電話番号</p>
-        <div class="u-field">
-          <%= f.text_field :telephone_number, class: "u-form-textfield"%>
-        </div>
-    </div>
+      <div class="u-field-row">
+        <p class="u-field-title">電話番号</p>
+          <div class="u-field">
+            <%= f.text_field :telephone_number, class: "u-form-textfield"%>
+          </div>
+      </div>
 
-    <div class="u-field-row">
-      <p class="u-field-title">メールアドレス</p>
-        <div class="u-field">
-          <%= f.email_field :email, class: "u-form-textfield" %>
-        </div>
-    </div>
+      <div class="u-field-row">
+        <p class="u-field-title">メールアドレス</p>
+          <div class="u-field">
+            <%= f.email_field :email, class: "u-form-textfield" %>
+          </div>
+      </div>
 
-    <div class="u-btn-wrapper opt-col2 u-size-l u-mt-30">
-      <%= f.submit "編集内容を保存", class: "u-btn u-fw-b" %>
-      <%= link_to "退会する", customers_unsubscribe_path, class: "u-btn u-fw-b u-bg-red" %>
-    </div>
-    
-    
-  <% end %>
+      <div class="u-btn-wrapper opt-col2 u-size-l u-mt-30">
+        <%= f.submit "編集内容を保存", class: "u-btn u-fw-b" %>
+        <%= link_to "退会する", customers_unsubscribe_path, class: "u-btn u-fw-b u-bg-red" %>
+      </div>
+    <% end %>
   </div> 
 </section>
