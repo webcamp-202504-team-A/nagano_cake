@@ -9,14 +9,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new(order_params)
+    @order = Order.new(order_params.except(:address_type, :address_id))
     @order.customer = current_customer
     case params[:order][:address_type]
     when  "member_address"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
-    when "saved_address"
+    when "registered_address"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address

@@ -30,4 +30,6 @@
   <h3>お届け先</h3>
     〒<%= @order.postal_code + @order.address + @order.name %>
   
-  <%= link_to %>
+  <%= form_with model: @order, method: :post do |f| %>
+    
+  <% end %>
