@@ -1,20 +1,43 @@
-<h2>ログイン</h2>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title3 u-mb-30">
+      <span>ログイン</span>
+    </h1>
 
-<p>会員の方はこちらからログイン</p>
-<%= form_with model: @customer, url:customer_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email,"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
-  </div>
+    <section class="u-pX-10">
+      <h2 class="u-title4 u-mb-20">
+        <span>会員の方はこちらからログイン</span>
+      </h2>
+      <div class="u-size-l">
+        <%= form_with model: @customer, url:customer_session_path do |f| %>
+          <div class="u-field-row">
+            <p class="u-field-title">メールアドレス</p>
+              <div class="u-field">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "u-form-textfield opt-full" %>
+              </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :password,"パスワード"%><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+          <div class="u-field-row">
+            <p class="u-field-title">パスワード</p>
+              <div class="u-field">
+                <%= f.password_field :password, autocomplete: "current-password", class: "u-form-textfield opt-full" %>
+              </div>
+          </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-<p>会員登録がお済みでない方</p>
-<%= render "public/shared/links" %>
+          <div class="u-btn-wrapper u-mt-30">
+            <%= f.submit "ログイン", class: "u-btn u-bg-blue opt-full u-fw-b" %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="u-mt-80 u-pX-10">
+      <h2 class="u-title4 u-mb-20">
+        <span>会員登録がお済みでない方</span>
+      </h2>
+      <div class="u-size-l">
+        <%= render "public/shared/links" %>
+      </div>
+    </section>
+  </div> 
+</section>

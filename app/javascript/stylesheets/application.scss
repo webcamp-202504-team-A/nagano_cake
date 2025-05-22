@@ -1875,15 +1875,9 @@ body {
 		}
 		&-row {
 			@include pc{
-				display: flex;
-				align-items: center;
-				> .u-field-title {
-					width: 30%;
-				}
-				> .u-field-double,
-				> .u-field{
-					width: calc(70% - 2rem);
-				}
+				display: grid;
+				grid-template-columns: 3fr 7fr;
+				gap: 2rem;
 			}
 			+ .u-field-row {
 				margin-top: 2rem;
