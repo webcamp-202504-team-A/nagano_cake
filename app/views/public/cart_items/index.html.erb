@@ -5,7 +5,11 @@
     </h1>
 
     <div class="u-btn-wrapper opt-right">
-      <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "u-btn opt-small u-bg-red u-fw-b"%>
+      <%= link_to "カートを空にする",
+      cart_items_destroy_all_path,
+      method: :delete,
+      data: { confirm: "本当にカートを空にしてもよろしいですか？" },
+      class: "u-btn opt-small u-bg-red u-fw-b"%>
     </div>
 
     <div class="u-table pc:opt-full sp:opt-nowrap u-mt-20">
