@@ -5,7 +5,11 @@
     </h1>
 
     <div class="u-btn-wrapper opt-right">
-      <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "u-btn opt-small u-bg-red u-fw-b"%>
+      <%= link_to "カートを空にする",
+      cart_items_destroy_all_path,
+      method: :delete,
+      data: { confirm: "本当にカートを空にしてもよろしいですか？" },
+      class: "u-btn opt-small u-bg-red u-fw-b"%>
     </div>
 
     <div class="u-table pc:opt-full sp:opt-nowrap u-mt-20">
@@ -33,7 +37,6 @@
             </td>
             <td>
               <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
-                <%= f.hidden_field :item_id, :value => cart_item.item.id %>
                 <div class="u-d-f opt-center-y u-gap-10">
                   <%= f.select :amount, (1..10).to_a %>
                   <%= f.submit "変更", class: "u-btn opt-small-1" %>
