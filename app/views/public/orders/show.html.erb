@@ -1,0 +1,39 @@
+<h2>注文履歴詳細</h2>
+
+<h3>注文情報</h3>
+  <p>注文日</p>
+    <%= "#{@order.created_at.year}/#{@order.created_at.month}/#{@order.created_at.day}" %>
+  <p>配送先</p>
+    〒<%= @order.postal_code  + @order.address + @order.name %>
+  <p>支払方法</p>
+    <%= @order.payment_method_i18n %>
+  <p>ステータス</p>
+    <%= @order.status %>
+    <%# 注文ステータスが実装されたら以下↓に変える %>
+    <%# <%= order.status_i18n %> 
+
+<h3>請求情報</h3>
+  <p>商品合計</p>
+    <% total_price = @order.order_details.sum do |order_detail| 
+       order_detail.price_with_tax * order_detail.amount
+    end %>
+
+    <%= number_with_delimiter(total_price) %>
+    
+  <p>配送料</p>
+    <%= @order.shipping_fee %>
+
+  <p>ご請求額</p>
+  <%= number_with_delimiter(total_price + @order.shipping_fee) %>
+
+<h3>注文内容</h3>
+  <% @order_details.each do |order_detail| %>
+    <p>商品</p>
+      <%= order_detail.item.name %>
+    <p>単価（税込）</p>
+      <%= order_detail.price_with_tax %>
+    <p>個数</p>
+      <%= order_detail.amount %>
+    <p>小計</p>
+      <%= order_detail.price_with_tax * order_detail.amount %>
+  <% end %>
