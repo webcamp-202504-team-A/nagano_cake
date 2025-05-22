@@ -1,0 +1,19 @@
+<h2>注文履歴一覧</h2>
+<% @orders.each do |order| %>
+  <p>注文日</p>
+    <%= "#{order.created_at.year}/#{order.created_at.month}/#{order.created_at.day}" %>
+  <p>配送先</p>
+    〒<%= order.postal_code  + order.address + order.name %>
+  <p>注文商品</p>
+    <% order.order_details.each do |order_detail| %>
+      <%= order_detail.item.name %>
+    <% end %>
+  <p>支払金額</p>
+    <%= number_with_delimiter(order.total_payment) %>円
+  <p>ステータス</p>
+    <%= order.status %>
+    <%# 注文ステータスが実装されたら以下↓に変える %>
+    <%# <%= order.status_i18n %> 
+  <p>注文詳細</p>
+  <%= link_to "表示する", order_path(order.id) %>
+<% end %>
