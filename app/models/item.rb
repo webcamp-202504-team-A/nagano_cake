@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :genre
+  has_many :order_details, dependent: :destroy
 
   def price_with_tax
     (price_without_tax * 1.1).floor
