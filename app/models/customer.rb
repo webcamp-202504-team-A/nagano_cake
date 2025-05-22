@@ -13,4 +13,8 @@ class Customer < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
+  
+  def total_cart_price
+    cart_items.includes(:item).sum { |ci| ci.item.price_with_tax * ci.amount }
+  end
 end

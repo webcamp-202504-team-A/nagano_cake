@@ -6,6 +6,25 @@ class Public::OrdersController < ApplicationController
   end
 
   def create 
+    @order = Order.new(order_params)
+    @order.customer = current_customer
+    @order.shipping_fee = 800
+    @order.total_payment = current_customer.total_cart_price + @order.shipping_fee
+
+    if @order.save
+    current_customer.cart_items.each do |cart_item|
+      OrderDetail.create!(
+        order_id: @order.id,
+        item_id: cart_item.item_id,
+        amount: cart_item.amount,
+        price_with_tax: cart_item.item.price_with_tax
+      )
+    end
+      current_customer.cart_items.destroy_all
+      redirect_to orders_complete_path
+    else
+      render :confirm
+    end
   end
 
   def confirm
