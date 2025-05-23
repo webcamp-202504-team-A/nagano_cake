@@ -33,7 +33,7 @@
               </figure>
             </td>
             <td>
-              <%= number_with_delimiter(cart_item.item.price_with_tax) %>
+              <%= number_with_delimiter(cart_item.item.price_with_tax * cart_item.amount) %>
             </td>
             <td>
               <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
