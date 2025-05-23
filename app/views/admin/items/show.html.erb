@@ -1,26 +1,53 @@
-<h2>商品詳細</h2>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title3 u-mb-30">
+      <span>商品詳細</span>
+    </h1>
 
-<div>
-  <div>
-    <%= image_tag @item.get_image, width: 300 %>
-  </div>
+    <div class="u-pc:d-f opt-ratio-3:7 u-gap-50">
+      <div>
+        <%= image_tag @item.get_image, width: 300 %>
+      </div>
 
-  <div>
-    <p>商品名<%= @item.name %></p>
-    <p>商品説明<%= @item.introduction %></p>
-    <p>ジャンル<%= @item.genre.name %></p>
-    <p>税込価格</p>
-    <p>（税抜価格)<%= number_with_delimiter(@item.price_with_tax) %>（<%= number_to_currency(@item.price_without_tax) %>）</p>
+      <div class="u-sp:mt-30 u-table pc:opt-full sp:opt-nowrap">
+        <table>
+          <tbody>
+            <tr>
+              <th width="30%">商品名</th>
+              <td><%= @item.name %></td>
+            </tr>
+            <tr>
+              <th>商品説明</th>
+              <td><%= @item.introduction %></td>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
+              <td><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+              <th>
+                税込価格<br>
+                （税抜価格）
+              </th>
+              <td><%= number_with_delimiter(@item.price_with_tax) %>（<%= number_to_currency(@item.price_without_tax) %>）</td>
+            </tr>
+            <tr>
+              <th>販売ステータス</th>
+              <td>
+                <% if @item.is_active %>
+                  <b class="u-c-green">販売中</b>
+                <% else %>
+                  <b class="u-c-gray">販売停止中</b>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-    <p>
-      販売ステータス
-      <% if @item.is_active %>
-        <span style="color: green;">販売中</span>
-      <% else %>
-        <span style="color: gray;">販売停止中</span>
-      <% end %>
-    </p>
-
-    <%= link_to '編集する', edit_admin_item_path(@item) %>
-  </div>
-</div>
+        <div class="u-mt-30 u-btn-wrapper">
+          <%= link_to '編集する', edit_admin_item_path(@item), class: "u-btn u-fw-b" %>
+        </div>
+      </div>
+    </div>
+  </div> 
+</section>
