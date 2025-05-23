@@ -1,52 +1,61 @@
-<h1>配送先登録 / 一覧</h1>
+<section class="u-pY-50">
+  <div class="u-inner1">
+    <h1 class="u-title3 u-mb-30">
+      <span>配送先登録 / 一覧</span>
+    </h1>
 
-<%= form_with(model: @new_address, method: :post) do |f| %>
-  <%# 郵便番号(ハイフンなし) %>
-  <div class="form-group">
-    <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-    <%= f.text_field :postal_code, placeholder: "0000000" %>
-  </div>
+    <%= form_with(model: @new_address, method: :post) do |f| %>
+      <div class="u-field-row">
+        <p class="u-field-title">郵便番号(ハイフンなし)</p>
+          <div class="u-field">
+            <%= f.text_field :postal_code, placeholder: "0000000", class: "u-form-textfield" %>
+          </div>
+      </div>
 
-  <%# 住所 %>
-  <div class="form-group">
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
-  </div>
+      <div class="u-field-row">
+        <p class="u-field-title">住所</p>
+          <div class="u-field">
+            <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "u-form-textfield opt-full" %>
+          </div>
+      </div>
 
-  <%# 宛名 %>
-  <div class="form-group">
-    <%= f.label :name, "宛名" %>
-    <%= f.text_field :name, placeholder: "令和道子" %>
-  </div>
+      <div class="u-field-row">
+        <p class="u-field-title">宛名</p>
+          <div class="u-field">
+            <%= f.text_field :name, placeholder: "令和道子", class: "u-form-textfield" %>
+          </div>
+      </div>
 
-  <%= f.submit "新規投稿" %>
-<% end %>
+      <div class="u-btn-wrapper u-mt-30">
+        <%= f.submit "新規投稿", class: "u-btn u-fw-b" %>
+      </div>
+    <% end %>
 
-<div class="u-table">
-  <table>
-    <thead>
-      <tr>
-        <th>郵便番号</th>
-        <th>住所</th>
-        <th>宛先</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @addresses.each do |address| %>
-      <tr>
-        <td><%= address.postal_code %></td>
-        <td><%= address.address %></td>
-        <td><%= address.name %></td>
-        <td>
-          <span>
-            <%= link_to "編集する", edit_address_path(address.id), class: ""%>
-          </span>
-          <span>
-            <%= link_to "削除する", address_path(address.id), method: :delete, class: ""%>
-          </span>
-        </td>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <div class="u-table pc:opt-full sp:opt-nowrap u-mt-80">
+      <table>
+        <thead>
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛先</th>
+            <th width="20%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td>
+              <div class="u-btn-wrapper opt-col2">
+                <%= link_to "編集する", edit_address_path(address.id), class: "u-btn u-fw-b opt-small-1"%>
+                <%= link_to "削除する", address_path(address.id), method: :delete, class: "u-btn u-fw-b opt-small-1 u-bg-red"%>
+              </div>
+            </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div> 
+</section>
