@@ -1,37 +1,96 @@
-<h2>注文履歴詳細</h2>
+<section class="u-pY-50">
+  <div class="u-inner2">
+    <h1 class="u-title3 u-mb-30">
+      <span>注文履歴詳細</span>
+    </h1>
 
-<h3>注文情報</h3>
-  <p>注文日</p>
-    <%= "#{@order.created_at.year}/#{@order.created_at.month}/#{@order.created_at.day}" %>
-  <p>配送先</p>
-    〒<%= @order.postal_code  + @order.address + @order.name %>
-  <p>支払方法</p>
-    <%= @order.payment_method_i18n %>
-  <p>ステータス</p>
-    <%= @order.status_i18n %> 
+    <div class="u-pc:d-f opt-ratio-7:3 u-gap-20">
+      <article>
+        <h2 class="u-title6 u-mb-10">注文情報</h2>
+        <div class="u-table pc:opt-full sp:opt-nowrap">
+          <table>
+            <tbody>
+              <tr>
+                <th width="20%">注文日</th>
+                <td><%= "#{@order.created_at.year}/#{@order.created_at.month}/#{@order.created_at.day}" %></td>
+              </tr>
+              <tr>
+                <th>配送先</th>
+                <td>
+                  〒<%= @order.postal_code %><br>
+                  <%= @order.address %><br>
+                  <%= @order.name %>
+                </td>
+              </tr>
+              <tr>
+                <th>支払方法</th>
+                <td><%= @order.payment_method_i18n %></td>
+              </tr>
+              <tr>
+                <th>ステータス</th>
+                <td><%= @order.status_i18n %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
 
-<h3>請求情報</h3>
-  <p>商品合計</p>
-    <% total_price = @order.order_details.sum do |order_detail| 
-       order_detail.price_with_tax * order_detail.amount
-    end %>
+      <article class="u-sp:mt-30">
+        <h2 class="u-title6 u-mb-10">請求情報</h2>
+        <div class="u-table pc:opt-full sp:opt-nowrap">
+          <table>
+            <tbody>
+              <tr>
+                <th>商品合計</th>
+                <td>
+                  <% total_price = @order.order_details.sum do |order_detail| 
+                    order_detail.price_with_tax * order_detail.amount
+                  end %>
+                  <%= number_with_delimiter(total_price) %>
+                </td>
+              </tr>
+              <tr>
+                <th>配送料</th>
+                <td><%= @order.shipping_fee %></td>
+              </tr>
+              <tr>
+                <th>ご請求額</th>
+                <td><%= number_with_delimiter(total_price + @order.shipping_fee) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </div>
 
-    <%= number_with_delimiter(total_price) %>
-    
-  <p>配送料</p>
-    <%= @order.shipping_fee %>
+    <article class="u-mt-30">
+      <h2 class="u-title6 u-mb-10">請求情報</h2>
+      <div class="u-table sp:opt-nowrap">
+        <table>
+          <thead>
+            <tr>
+              <th>商品</th>
+              <th>単価（税込）</th>
+              <th>個数</th>
+              <th>小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_details.each do |order_detail| %>
+              <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.price_with_tax %></td>
+                <td><%= order_detail.amount %></td>
+                <td><%= order_detail.price_with_tax * order_detail.amount %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </article>
+        
 
-  <p>ご請求額</p>
-  <%= number_with_delimiter(total_price + @order.shipping_fee) %>
+      <h3></h3>
 
-<h3>注文内容</h3>
-  <% @order_details.each do |order_detail| %>
-    <p>商品</p>
-      <%= order_detail.item.name %>
-    <p>単価（税込）</p>
-      <%= order_detail.price_with_tax %>
-    <p>個数</p>
-      <%= order_detail.amount %>
-    <p>小計</p>
-      <%= order_detail.price_with_tax * order_detail.amount %>
-  <% end %>
+    </div> 
+</section>
