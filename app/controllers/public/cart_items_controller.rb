@@ -15,8 +15,10 @@ class Public::CartItemsController < ApplicationController
       existing_item.amount += cart_item_params[:amount].to_i
       if existing_item.save
         flash[:notice] = "カートの数量を更新しました"
+        redirect_to cart_items_path
       else
         flash[:alert] = "更新に失敗しました"
+        render "public/items/show"
       end
     else
       cart_item.customer_id = current_customer.id
@@ -25,7 +27,7 @@ class Public::CartItemsController < ApplicationController
         redirect_to cart_items_path
       else
         flash[:alert] = "追加に失敗しました"
-        render "item/show"
+        render "public/items/show"
       end
     end
   end
