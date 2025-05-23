@@ -970,7 +970,10 @@ body {
 			justify-content: space-evenly;
 		}
 		&.opt-top{
-			align-self: start;
+			align-self: flex-start;
+		}
+		&.opt-end{
+			align-self: flex-end;
 		}
 		@for $i from 1 through 10 {
 			&.opt-ratio-#{$i}\:#{calc(10 - $i)} {
@@ -1867,6 +1870,10 @@ body {
         width: 100%;
       }
     }
+
+		&-textarea{
+			height: 10em;
+		}
   }
 
 	// フォームフィールド
