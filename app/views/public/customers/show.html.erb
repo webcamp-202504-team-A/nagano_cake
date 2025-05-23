@@ -1,22 +1,59 @@
-<h1>マイページ</h1>
-<h2>登録情報</h2> 
- <%= link_to "編集する",customers_information_edit_path %>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title3 u-mb-30">
+      <span>マイページ</span>
+    </h1>
 
-  <span>氏名</span>
-  <%= @customer.last_name %> <%= @customer.first_name %>
-  <span>カナ</span>
-  <%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
-  <span>郵便番号</span>
-  <%= @customer.postal_code %>
-  <span>住所</span>
-  <%= @customer.address %>
-  <span>電話番号</span>
-  <%= @customer.telephone_number %>
-  <span>メールアドレス</span>
-  <%= @customer.email %>
+    <section>
+      <div class="u-d-f opt-center-y u-gap-30">
+        <h2 class="u-title5">登録情報</h2> 
+        <%= link_to "編集する",customers_information_edit_path, class: "u-btn opt-small u-fw-b"  %>
+      </div>
 
-<p>配送先</p>
-<%= link_to "一覧を見る",addresses_path %>
+      <div class="u-table pc:opt-full sp:opt-nowrap u-mt-20">
+        <table>
+          <tbody>
+            <tr>
+              <th width="30%">氏名</th>
+              <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+            </tr>
+            <tr>
+              <th>カナ</th>
+              <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+            </tr>
+            <tr>
+              <th>郵便番号</th>
+              <td><%= @customer.postal_code %></td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td><%= @customer.address %></td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td><%= @customer.telephone_number %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= @customer.email %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+    <section class="u-mt-50">
+      <div class="u-d-f opt-center-y u-gap-30">
+        <h2 class="u-title5">配送先</h2>
+        <%= link_to "一覧を見る", addresses_path, class: "u-btn opt-small u-fw-b u-bg-blue"  %>
+      </div>
+    </section>
 
-<p>注文履歴</p>
-<%= link_to "一覧を見る",orders_path %>
+    <section class="u-mt-50">
+      <div class="u-d-f opt-center-y u-gap-30">
+        <h2 class="u-title5">注文履歴</h2>
+        <%= link_to "一覧を見る", orders_path, class: "u-btn opt-small u-fw-b u-bg-blue"  %>
+      </div>
+    </section>
+  </div> 
+</section>

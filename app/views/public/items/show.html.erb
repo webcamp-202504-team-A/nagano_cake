@@ -1,10 +1,23 @@
-<%= image_tag @item.get_image %>
-<%= @item.name %>
-<%= @item.introduction %>
-￥<%= number_with_delimiter(@item.price_with_tax) %>(税込)
-
-<%= form_with model: @cart_item, url: cart_items_path do |f| %>
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <%= f.select :amount, (1..10).to_a,{ prompt: "個数選択" } %>
-  <%= f.submit "カートに入れる" %>
-<% end %>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <div class="u-pc:d-f opt-ratio-3:7 u-pc:gap-50">
+      <figure>
+        <%= image_tag @item.get_image %>
+      </figure>
+      <div class="u-sp:mt-20">
+        <h1 class="u-title2 u-mb-10"><%= @item.name %></h1>
+        <p><%= @item.introduction %></p>
+        <p class="u-mt-30 u-title5"><b>￥<%= number_with_delimiter(@item.price_with_tax) %></b><small>(税込)</small></p>
+        <div class="u-mt-30">
+          <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <div class="u-d-f opt-center-y u-gap-20">
+              <%= f.select :amount, (1..10).to_a,{ prompt: "個数選択" } %>
+              <%= f.submit "カートに入れる", class: "u-btn opt-small-1" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div> 
+</section>

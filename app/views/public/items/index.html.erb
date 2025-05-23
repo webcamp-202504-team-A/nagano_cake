@@ -1,9 +1,20 @@
-<h1>商品一覧(全<%= @items.count %>件)</h1>
-<% @items.each do |item| %>
-  <%= link_to item_path(item) do %>
-    <%= image_tag item.get_image %>
-  <% end %>
-    <%= item.name %>
-    ￥<%= number_with_delimiter(item.price_with_tax) %>
-<% end %>
-<%= paginate @items %>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title2 u-mb-30">商品一覧 <small>(全<%= @items.count %>件)</small></h1>
+
+    <ul class="u-items">
+        <% @items.each do |item| %>
+          <li class="u-item">
+            <%= link_to item_path(item) do %>
+              <figure>
+                <%= image_tag item.get_image %>
+                <figcaption class="u-item-name"><%= item.name %></figcaption>
+              </figure>
+              <p class="u-item-price">¥<%= number_with_delimiter(item.price_with_tax) %></p>
+            <% end %>
+          </li>
+        <% end %>
+    </ul>
+      <%= paginate @items %>
+  </div> 
+</section>

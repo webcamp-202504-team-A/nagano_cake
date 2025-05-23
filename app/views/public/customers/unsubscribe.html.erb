@@ -1,8 +1,18 @@
-<h2>本当に退会しますか？</h2>
+<section class="u-pY-100">
+  <div class="u-inner">
+    <h1 class="u-title2 u-ta-c u-mb-30">本当に退会しますか？</h1>
 
-<p>退会すると、会員登録情報や
-これまでの購入履歴が閲覧できなくなります。
-退会する場合は、「退会する」をクリックしてください。</p>
+    <p class="u-ta-c">
+      <b>
+        退会すると、会員登録情報や<br>
+        これまでの購入履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </b>
+    </p>
 
-<%= link_to "退会しない",customers_my_page_path %>
-<%= link_to "退会する",customers_withdraw_path, method: :patch %>
+    <div class="u-btn-wrapper opt-col2 u-size-l u-mt-30">
+      <%= link_to "退会しない", customers_my_page_path, class: "u-btn u-fw-b u-bg-blue" %>
+      <%= link_to "退会する", customers_withdraw_path, method: :patch, class: "u-btn u-fw-b u-bg-red" %>
+    </div>
+  </div> 
+</section>
