@@ -21,6 +21,10 @@
       <div><%= flash[:alert] %></div>
     <% end %>
 
+    <%= render "admin/shared/error_messages", resource: @item if @item.present? %>
+    <%= render "admin/shared/error_messages", resource: @customer if @customer.present?%>
+    <%= render "admin/shared/error_messages", resource: @genre if @genre.present?%>
+
     <main>
       <%= yield %>
     </main>
