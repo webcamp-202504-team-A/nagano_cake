@@ -19,6 +19,13 @@ ja:
           製作中: "製作中"
           発送準備中: "発送準備中"
           発送済み: "発送済み"
+  enums:
+    order_detail:
+      production_status:
+        not_startable: "製作不可"
+        waiting: "製作待ち"
+        in_production: "製作中"
+        finished: "製作完了"
   date:
     abbr_day_names:
     - 日

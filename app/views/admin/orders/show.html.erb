@@ -1,0 +1,45 @@
+<h2>注文履歴詳細</h2>
+
+<p>
+  購入者：<%= link_to "#{@order.customer.last_name} #{@order.customer.first_name}", admin_customer_path(@order.customer.id) %><br>
+  注文日：<%= @order.created_at.to_date %><br>
+  配送先：<%= @order.postal_code %> <%= @order.address %> <%= @order.name %><br>
+  支払方法：<%= @order.payment_method_i18n %><br>
+</p>
+
+<%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+  注文ステータス：
+  <%= f.select :status, Order.statuses.keys.map { |k| [k.humanize, k] }, selected: @order.status %>
+  <%= f.submit "更新" %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_details.each do |detail| %>
+      <tr>
+        <td><%= detail.item.name %></td>
+        <td><%= number_with_delimiter(detail.price_with_tax) %></td>
+        <td><%= detail.amount %></td>
+        <td><%= number_with_delimiter(detail.price_with_tax * detail.amount) %></td>
+        <td>
+          <%= form_with model: detail, url: admin_order_detail_path(detail), method: :patch, local: true do |f| %>
+          <%= f.select :production_status, OrderDetail.production_statuses.keys.map { |k| [I18n.t("enums.order_detail.production_status.#{k}"), k] }, selected: detail.production_status %>
+        </td>
+        <td>    
+            <%= f.submit "更新" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
