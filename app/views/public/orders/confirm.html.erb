@@ -1,40 +1,91 @@
+<section class="u-pY-50">
+  <div class="u-inner1">
+    <h1 class="u-title3 u-mb-30">
+      <span>注文情報確認</span>
+    </h1>
 
-<h2>注文情報確認</h2>
-<%= form_with model: @order, method: :post do |f| %>
-  <% @order.customer.cart_items.each do |cart_item| %>
-    <p>商品名</p>
-      <%= cart_item.item.name %>
-    <p>数量</p>
-      <%= cart_item.amount %>
-    <p>単価（税込)</p>
-      <%= number_with_delimiter(cart_item.item.price_with_tax) %>
-    <p>小計</p>
-      <%= number_with_delimiter(cart_item.item.price_with_tax * cart_item.amount) %>
-  <% end %>
+    <%= form_with model: @order, method: :post do |f| %>
+      <div class="u-pc:d-f opt-ratio-8:2 u-gap-20">
+        <div class="u-table pc:opt-full sp:opt-nowrap">
+          <table>
+            <thead>
+              <tr>
+                <th>商品名</th>
+                <th>数量</th>
+                <th>単価（税込）</th>
+                <th>小計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order.customer.cart_items.each do |cart_item| %>
+                <tr>
+                  <td>
+                    <figure class="cart_item-figure">
+                      <%= image_tag cart_item.item.get_image, class: "cart_item-image"%>
+                      <figcaption class="cart_item-name"><%= cart_item.item.name %></figcaption>
+                    </figure>
+                  </td>
+                  <td><%= number_with_delimiter(cart_item.item.price_with_tax) %></td>
+                  <td><%= cart_item.amount %></td>
+                  <td><%= number_with_delimiter(cart_item.item.price_with_tax * cart_item.amount) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
 
-  <p>送料</p>
-    <%= number_with_delimiter(800) %>
+        <div class="u-table pc:opt-full sp:opt-nowrap u-sp:mt-20">
+          <table>
+            <tbody>
+              <tr>
+                <th>送料</th>
+                <td><%= number_with_delimiter(800) %></td>
+              </tr>
+              <tr>
+                <th>商品合計</th>
+                <td>
+                  <% total_price = @order.customer.cart_items.sum do |cart_item| 
+                    cart_item.item.price_with_tax * cart_item.amount
+                  end %>
+                  <%= number_with_delimiter(total_price) %>
+                </td>
+              </tr>
+              <tr>
+                <th>請求金額</th>
+                <td><%= number_with_delimiter(800 + total_price.to_i) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <section class="u-mt-50">
+        <div class="u-d-f u-gap-30">
+          <h2 class="u-title5">支払方法</h2>
+          <p>
+            <%= @order.payment_method_i18n %>
+            <%= f.hidden_field :payment_method, value: @order.payment_method %>
+          </p>
+        </div>
+      </section>
 
-  <p>商品合計</p>
-    <% total_price = @order.customer.cart_items.sum do |cart_item| 
-       cart_item.item.price_with_tax * cart_item.amount
-    end %>
+      <section class="u-mt-50">
+        <div class="u-d-f u-gap-30">
+          <h2 class="u-title5">お届け先</h2>
+          <p>
+            〒<%= @order.postal_code + @order.address %><br>
+            <%= @order.name %>
+          </p>
+        </div>
+      </section>
 
-    <%= number_with_delimiter(total_price) %>
-    
-  <p>請求金額</p>
-    <%= number_with_delimiter(800 + total_price.to_i) %>
-    
-  <h3>支払方法</h3>
-    <%= @order.payment_method_i18n %>
-    <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      <%= f.hidden_field :postal_code, value: @order.postal_code %><br>
+      <%= f.hidden_field :address, value: @order.address %><br>
+      <%= f.hidden_field :name, value: @order.name %>
 
-  <h3>お届け先</h3>
-    〒<%= @order.postal_code + @order.address + @order.name %>
-    <%= f.hidden_field :postal_code, value: @order.postal_code %>
-    <%= f.hidden_field :address, value: @order.address %>
-    <%= f.hidden_field :name, value: @order.name %>
-  <%= f.submit "注文を確定する" %>
-<% end %>
-
-
+      <div class="u-btn-wrapper">
+        <%= f.submit "注文を確定する", class: "u-btn u-fw-b" %>
+      </div>
+    <% end %>
+  </div> 
+</section>
