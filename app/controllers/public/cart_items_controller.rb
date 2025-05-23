@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+  before_action :authenticate_customer!
   def index
     @cart_items = current_customer.cart_items.all
     @total_fee = @cart_items.sum do |cart_item|
@@ -15,20 +16,21 @@ class Public::CartItemsController < ApplicationController
       existing_item.amount += cart_item_params[:amount].to_i
       if existing_item.save
         flash[:notice] = "カートの数量を更新しました"
+        redirect_to cart_items_path
       else
         flash[:alert] = "更新に失敗しました"
+        render "public/items/show"
       end
     else
       cart_item.customer_id = current_customer.id
       if cart_item.save
         flash[:notice] = "カートに商品を追加しました"
+        redirect_to cart_items_path
       else
         flash[:alert] = "追加に失敗しました"
+        render "public/items/show"
       end
     end
-
-    @item = Item.find(cart_item[:item_id])
-    redirect_to request.referer
   end
 
   def update
