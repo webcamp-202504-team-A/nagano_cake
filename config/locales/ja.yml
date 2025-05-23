@@ -4,6 +4,12 @@ ja:
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+      order_detail:
+        production_status:
+          not_startable: "製作不可"
+          waiting: "製作待ち"
+          in_production: "製作中"
+          finished: "製作完了"
   activerecord:
     errors:
       messages:
@@ -11,28 +17,26 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-  activerecord:
-   models:
+    models:
       genre: ジャンル
-   attributes:
-     genre: 
-       name: ジャンル名
-     customer:
-       last_name: 姓
-       first_name: 名
-       last_name_kana: 姓（カナ）
-       first_name_kana: 名（カナ）
-       email: メールアドレス
-       postal_code: 郵便番号
-       address: 住所
-       telephone_number: 電話番号
-     item:
-       name: 商品名
-       introduction: 商品説明
-       price_without_tax: 税抜価格
-       genre: ジャンル
-       genre_id: ジャンル
-  attributes:
+    attributes:
+      genre: 
+        name: ジャンル名
+      customer:
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓（カナ）
+        first_name_kana: 名（カナ）
+        email: メールアドレス
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+      item:
+        name: 商品名
+        introduction: 商品説明
+        price_without_tax: 税抜価格
+        genre: ジャンル
+        genre_id: ジャンル
       order:
         status:
           入金待ち: "入金待ち"
@@ -40,13 +44,6 @@ ja:
           製作中: "製作中"
           発送準備中: "発送準備中"
           発送済み: "発送済み"
-  enums:
-    order_detail:
-      production_status:
-        not_startable: "製作不可"
-        waiting: "製作待ち"
-        in_production: "製作中"
-        finished: "製作完了"
   date:
     abbr_day_names:
     - 日
