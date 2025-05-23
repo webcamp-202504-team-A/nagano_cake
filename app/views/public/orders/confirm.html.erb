@@ -25,8 +25,8 @@
                       <figcaption class="cart_item-name"><%= cart_item.item.name %></figcaption>
                     </figure>
                   </td>
-                  <td><%= number_with_delimiter(cart_item.item.price_with_tax) %></td>
                   <td><%= cart_item.amount %></td>
+                  <td><%= number_with_delimiter(cart_item.item.price_with_tax) %></td>
                   <td><%= number_with_delimiter(cart_item.item.price_with_tax * cart_item.amount) %></td>
                 </tr>
               <% end %>
