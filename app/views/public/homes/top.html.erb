@@ -18,43 +18,18 @@
   <div class="u-inner2">
     <h2 class="u-title2 u-mb-20">新着商品</h2>
     <ul class="u-items">
-      <li class="u-item">
-        <%= link_to "/" do %>
-          <figure>
-            <%= image_tag "https://placehold.jp/600x400.png" %>
-            <figcaption class="u-item-name">商品名</figcaption>
-          </figure>
-          <p class="u-item-price">¥0,000</p>
-        <% end %>
-      </li>
-      <li class="u-item">
-        <%= link_to "/" do %>
-          <figure>
-            <%= image_tag "https://placehold.jp/600x400.png" %>
-            <figcaption class="u-item-name">商品名</figcaption>
-          </figure>
-          <p class="u-item-price">¥0,000</p>
-        <% end %>
-      </li>
-      <li class="u-item">
-        <%= link_to "/" do %>
-          <figure>
-            <%= image_tag "https://placehold.jp/600x400.png" %>
-            <figcaption class="u-item-name">商品名</figcaption>
-          </figure>
-          <p class="u-item-price">¥0,000</p>
-        <% end %>
-      </li>
-      <li class="u-item">
-        <%= link_to "/" do %>
-          <figure>
-            <%= image_tag "https://placehold.jp/600x400.png" %>
-            <figcaption class="u-item-name">商品名</figcaption>
-          </figure>
-          <p class="u-item-price">¥0,000</p>
-        <% end %>
-      </li>
+      <% @items.each do |item| %>
+        <li class="u-item">
+          <%= link_to item_path(item) do %>
+            <figure>
+              <%= image_tag item.get_image %>
+              <figcaption class="u-item-name"><%= item.name %></figcaption>
+            </figure>
+            <p class="u-item-price">¥<%= number_with_delimiter(item.price_with_tax) %></p>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
-    <p class="u-ta-r u-mt-20"><%= link_to "全ての商品を見る>", "/", class: "u-link" %></p>
+    <p class="u-ta-r u-mt-20"><%= link_to "全ての商品を見る>", items_path , class: "u-link" %></p>
   </div>
 </section>
