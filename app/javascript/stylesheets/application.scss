@@ -969,6 +969,9 @@ body {
 		&.opt-even {
 			justify-content: space-evenly;
 		}
+		&.opt-top{
+			align-self: start;
+		}
 		@for $i from 1 through 10 {
 			&.opt-ratio-#{$i}\:#{calc(10 - $i)} {
 				> * {
