@@ -7,7 +7,7 @@
       <section>
         <h2 class="u-title5 u-mb-10">支払い方法</h2>
         <p>
-          <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
           <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
         </p>
         <p>
@@ -31,7 +31,7 @@
           </p>
         </div>
 
-        <div class="u-mt-10">
+        <div class="u-mt-30">
           <p>
             <%= f.label :address_type_registered_address do %>
               <%= f.radio_button :address_type, "registered_address" %>
@@ -39,27 +39,45 @@
             <% end %>
           </p>
           <p class="u-pl-30">
-            <%= f.select :address_id, options_from_collection_for_select(Address.where(customer_id: current_customer.id), :id, :address_display), class: "u-form-select" %>
+            <%= f.select :address_id, options_from_collection_for_select(Address.where(customer_id: current_customer.id), :id, :address_display), {}, class: "u-form-select" %>
           </p>
         </div>
 
-        <div>
-          <%= f.radio_button :address_type, "new_address" %>
-          <%= f.label :address_type, "新しいお届け先" %>
+        <div class="u-mt-30">
+          <p>
+            <%= f.label :address_type_new_address do %>
+              <%= f.radio_button :address_type, "new_address" %>
+              <b>新しいお届け先</b>
+            <% end %>
+          </p>
+          <div class="u-pl-30">
+            <div class="u-field-row">
+              <p class="u-field-title">郵便番号(ハイフンなし)</p>
+              <div class="u-field">
+                <%= f.text_field :postal_code, class: "u-form-textfield", placeholder: "1234567" %>
+              </div>
+            </div>
 
-          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-          <%= f.text_field :postal_code %>
+            <div class="u-field-row">
+              <p class="u-field-title">住所</p>
+              <div class="u-field">
+                <%= f.text_field :address, class: "u-form-textfield opt-full", placeholder: "東京都渋谷区代々木神園町0-0" %>
+              </div>
+            </div>
 
-          <%= f.label :address, "住所" %>
-          <%= f.text_field :address %>
-
-          <%= f.label :name, "宛名" %>
-          <%= f.text_field :name %>
+            <div class="u-field-row">
+              <p class="u-field-title">宛名</p>
+              <div class="u-field">
+                <%= f.text_field :name, class: "u-form-textfield", placeholder: "令和道子" %>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-
-      <%= f.submit "確認画面へ進む" %>
+      <div class="u-btn-wrapper u-mt-50">
+        <%= f.submit "確認画面へ進む", class: "u-btn u-bg-blue" %>
+      </div>
     <% end %>
   </div> 
 </section>
