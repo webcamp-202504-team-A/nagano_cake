@@ -1983,3 +1983,11 @@ body {
 		max-width: 10em;
 	}
 }
+
+.pagination{
+	text-align: center;
+	font-weight: bold;
+	a{
+		@extend .u-link;
+	}
+}

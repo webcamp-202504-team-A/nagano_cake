@@ -1,35 +1,46 @@
-<h2>商品一覧</h2>
-<%= link_to "アイテム登録へ", new_admin_item_path %>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title3 u-mb-30">
+      <span>商品一覧</span>
+    </h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.id %></td>
-        <td><%= link_to item.name, admin_item_path(item) %></td>
-        <td><%= number_with_delimiter(item.price_without_tax) %></td>
-        <td><%= item.genre.name if item.genre.present? %></td>
-        <td>
-          <% if item.is_active %>
-            <span style="color: green;">販売中</span>
-          <% else %>
-            <span style="color: gray;">販売停止中</span>
+    <p class="u-ta-r">
+      <%= link_to "アイテム登録へ", new_admin_item_path, class: "u-link" %>
+    </p>
+
+    <div class="u-table pc:opt-full sp:opt-nowrap u-mt-20">
+      <table>
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= link_to item.name, admin_item_path(item), class: "u-link" %></td>
+              <td><%= number_with_delimiter(item.price_without_tax) %></td>
+              <td><%= item.genre.name if item.genre.present? %></td>
+              <td>
+                <% if item.is_active %>
+                  <b class="u-c-green">販売中</b>
+                <% else %>
+                  <b class="u-c-gray">販売停止中</b>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
+    </div>
 
-<div>
-  <%= paginate @items %>
-</div>
+    <div class="u-mt-30">
+      <%= paginate @items %>
+    </div>
+  </div> 
+</section>
