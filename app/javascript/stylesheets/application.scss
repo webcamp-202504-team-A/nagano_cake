@@ -970,10 +970,10 @@ body {
 			justify-content: space-evenly;
 		}
 		&.opt-top{
-			align-self: flex-start;
+			align-items: flex-start;
 		}
 		&.opt-end{
-			align-self: flex-end;
+			align-items: flex-end;
 		}
 		@for $i from 1 through 10 {
 			&.opt-ratio-#{$i}\:#{calc(10 - $i)} {
