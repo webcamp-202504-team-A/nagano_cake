@@ -4,6 +4,12 @@ ja:
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+        status:
+          payment_pending: "入金待ち"
+          payment_confirmed: "入金確認"
+          in_production: "製作中"
+          preparing_for_shipment: "発送準備中"
+          shipped: "発送済み"  
       order_detail:
         production_status:
           not_startable: "製作不可"
@@ -37,13 +43,6 @@ ja:
         price_without_tax: 税抜価格
         genre: ジャンル
         genre_id: ジャンル
-      order:
-        status:
-          入金待ち: "入金待ち"
-          入金確認: "入金確認"
-          製作中: "製作中"
-          発送準備中: "発送準備中"
-          発送済み: "発送済み"
   date:
     abbr_day_names:
     - 日
