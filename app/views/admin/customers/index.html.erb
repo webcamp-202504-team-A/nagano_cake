@@ -1,36 +1,45 @@
-<h2>会員一覧</h2>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title3 u-mb-30">
+      <span>会員一覧</span>
+    </h1>
 
-<table>
-    <thead>
-        <tr>
-          <th>会員ID</th>
-          <th style="text-decoration: underline;">氏名</th>
-          <th>メールアドレス</th>
-          <th>ステータス</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @customers.each do |customer| %>
-          <tr>
-            <td><%= customer.id %></td>
-            <td>
-              <%= link_to "#{customer.last_name}#{customer.first_name}", admin_customer_path(customer) %>
-            </td>
-            <td><%= customer.email %></td>
-            <td>
-               <% if customer.is_active %>
-                 <span style="color: green;">有効</span>
-               <% else %>
-                 <span style="color: gray;">退会</span>
-               <% end %>
-            </td>
-          </tr>
-        <% end %>
-    </tbody>
-</table>
-<div>
-    <%= paginate @customers %>
-</div>
+    <div class="u-table-1 pc:opt-full sp:opt-nowrap">
+      <table>
+          <thead>
+              <tr>
+                <th>会員ID</th>
+                <th>氏名</th>
+                <th>メールアドレス</th>
+                <th>ステータス</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% @customers.each do |customer| %>
+                <tr>
+                  <td><%= customer.id %></td>
+                  <td>
+                    <%= link_to "#{customer.last_name}#{customer.first_name}", admin_customer_path(customer), class: "u-link" %>
+                  </td>
+                  <td><%= customer.email %></td>
+                  <td>
+                    <% if customer.is_active %>
+                      <span class="u-c-green u-fw-b">有効</span>
+                    <% else %>
+                      <span class="u-c-gray u-fw-b">退会</span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+          </tbody>
+      </table>
+    <div>
+
+    <div class="pagination u-mt-20">
+        <%= paginate @customers %>
+    </div>
+  </div> 
+</section>
 
 <%# TODO: 最終リリース時には testuser を削除すること %>
 <%# Customer.where("email LIKE ?", "testuser%@example.com").destroy_all %>
