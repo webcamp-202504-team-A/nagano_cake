@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    root to: "homes#top" # ← 編集する可能性あり
+    root to: "homes#top" 
 
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
 
