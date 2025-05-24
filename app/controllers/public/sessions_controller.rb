@@ -36,7 +36,7 @@ class Public::SessionsController < Devise::SessionsController
     return unless customer.valid_password?(params[:customer][:password])
 
     unless customer.is_active?
-    flash[:alert] = "This account has been deactivated."
+    flash[:alert] = "このアカウントは退会されています"
     redirect_to new_customer_registration_path
     end
   end
