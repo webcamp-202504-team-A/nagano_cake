@@ -123,7 +123,7 @@ end
 
 Customer.find_each do |customer|
   2.times do |i|
-    Address.create!(
+    Address.find_or_create_by!(
       name: "#{customer.last_name} 配送先#{i + 1}",
       postal_code: "123456#{i}",
       address: "東京都サンプル区#{i + 1}丁目#{customer.id}番地",
@@ -209,9 +209,10 @@ items = [
 ]
 
 items.each do |attrs|
-  Item.create!(attrs)
+  Item.find_or_create_by!(attrs)
 end
 
+load Rails.root.join('db', 'seeds', 'items_image_seeder.rb')
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
