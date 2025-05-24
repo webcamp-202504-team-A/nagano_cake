@@ -40,7 +40,7 @@
         <div class="u-field">
           <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
             <div class="u-d-f u-gap-30">
-              <%= f.select :status, Order.statuses.keys.map { |k| [k.humanize, k] }, selected: @order.status, class: "u-form-select" %>
+              <%= f.select :status, Order.statuses_i18n.invert, selected: @order.status, class: "u-form-select" %>
               <%= f.submit "更新", class: "u-btn opt-small-1 u-fw-b" %>
             </div>
           <% end %>
