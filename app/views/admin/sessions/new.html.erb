@@ -1,19 +1,29 @@
-<h2>管理者ログイン</h2>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title3 u-mb-30">
+      <span>管理者ログイン</span>
+    </h1>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email , "メールアドレス" %><br />
-    <%= f.email_field :email, placeholder: "sample@example.com",autofocus: true, autocomplete: "email" %>
-  </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="u-field-row">
+        <p class="u-field-title">メールアドレス</p>
+          <div class="u-field">
+            <%= f.email_field :email, placeholder: "sample@example.com",autofocus: true, autocomplete: "email", class: "u-form-textfield opt-full" %>
+          </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password , "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <div class="u-field-row">
+        <p class="u-field-title">パスワード</p>
+          <div class="u-field">
+            <%= f.password_field :password, autocomplete: "current-password", class: "u-form-textfield opt-full" %>
+          </div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+      <div class="u-btn-wrapper u-mt-30">
+        <%= f.submit "ログイン", class: "u-btn u-bg-blue u-fw-b" %>
+      </div>
+    <% end %>
 
-<%= render "admin/shared/links" %>
+    <%= render "admin/shared/links" %>
+  </div> 
+</section>
