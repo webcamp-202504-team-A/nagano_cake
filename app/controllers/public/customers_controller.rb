@@ -12,7 +12,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-    redirect_to customers_my_page_path, notice:"Update successfully."
+    redirect_to customers_my_page_path, notice:"登録内容を変更しました"
     else
       render :edit
     end
@@ -25,7 +25,7 @@ class Public::CustomersController < ApplicationController
   def withdraw
     current_customer.update(is_active: false)
     reset_session
-    redirect_to root_path, notice: "Cancellation process successful!"
+    redirect_to root_path, notice: "退会が完了しました"
   end
 
   private 
