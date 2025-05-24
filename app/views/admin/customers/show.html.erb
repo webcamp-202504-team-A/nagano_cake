@@ -1,43 +1,57 @@
-<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
+<section class="u-pY-50">
+  <div class="u-inner">
+    <h1 class="u-title3 u-mb-30">
+      <span><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</span>
+    </h1>
 
-<table>
-  <tr>
-    <th>会員ID</th>
-    <td><%= @customer.id %></td>
-  </tr>
-  <tr>
-    <th>氏名</th>
-    <td><%= @customer.last_name %> <%= @customer.first_name %></td>
-  </tr>
-  <tr>
-    <th>フリガナ</th>
-    <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
-  </tr>
-  <tr>
-    <th>郵便番号</th>
-    <td><%= @customer.postal_code %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <td><%= @customer.address %></td>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <td><%= @customer.telephone_number %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @customer.email %></td>
-  </tr>
-  <tr>
-    <th>会員ステータス</th>
-    <td><%= @customer.is_active ? "有効" : "退会" %></td>
-  </tr>
-</table>
+    <div class="u-table-1 pc:opt-full sp:opt-nowrap">
+      <table>
+        <tr>
+          <td width="30%">会員ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td>
+            <% if @customer.is_active %>
+              <span class="u-c-green u-fw-b">有効</span>
+            <% else %>
+              <span class="u-c-gray u-fw-b">退会</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
 
-<div>
-  <%= link_to "編集する", edit_admin_customer_path(@customer) %>
-</div>
+    <div class="u-btn-wrapper u-mt-20">
+      <%= link_to "編集する", edit_admin_customer_path(@customer), class: "u-btn u-fw-b" %>
+    </div>
+  </div> 
+</section>
 
 <!--
   管理者UI flow図の９ページには注文履歴一覧を見るボタンがありますが、遷移先の１２ページに「※顧客ごとの
