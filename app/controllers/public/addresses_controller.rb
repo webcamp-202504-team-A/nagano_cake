@@ -1,8 +1,5 @@
 class Public::AddressesController < ApplicationController
-  # TODO: ログインしていない時にアクセスするとログイン画面へ遷移
-  # before_action :authenticate_customer!
-
-  # 他人のアクセス防止
+  before_action :authenticate_customer!
 
   def index
     @new_address = Address.new
@@ -11,7 +8,6 @@ class Public::AddressesController < ApplicationController
 
   def edit
     @address = Address.find(params[:id])
-    p "🦐#{@address.id}"
   end
 
   def create
