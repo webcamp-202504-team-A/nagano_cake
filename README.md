@@ -1,5 +1,5 @@
 # ECサイト: 長野ケーキ
-[![長野ケーキ概要PDF](./assets_readme/about.pdf)](./assets_readme/about.pdf)
+[![長野ケーキ概要PDF](./app/assets/images/mv.webp)](./assets_readme/about.pdf)
 
 DMM WEBCAMPのチーム開発で作成するアプリ。<br>
 長野県にある小さな洋菓子店「ながのCAKE」（仮想ショップ）の商品を通販するためのECサイト開発。
