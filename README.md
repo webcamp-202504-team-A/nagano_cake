@@ -59,7 +59,7 @@ rails s
 - ステータス機能
 
 ## 設計図
-- [テーブル定義書](./assets_readme/table_ definition.pdf)
+- [テーブル定義書](./assets_readme/table_definition.pdf)
 - [ER図](./assets_readme/er.webp)
 - [アプリケーション詳細設計](./assets_readme/application_detailed_design.pdf)
 
