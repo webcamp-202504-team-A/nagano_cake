@@ -17,6 +17,7 @@ DMM WEBCAMPのチーム開発で作成するアプリ。<br>
 
 ### チームルール
 私たちは、チームルールを明確にし、遵守することでスムーズに開発をすることができました。
+
 チームルールは[こちら](./regulations/)
 
 ## 開発環境
@@ -25,7 +26,7 @@ DMM WEBCAMPのチーム開発で作成するアプリ。<br>
 | ソフトウェア  | バージョン    |
 | ------- | -------- |
 | Rails   | 6.1.7.10 |
-| Node.js | v18.18.2 |
+| Node.js | 18.18.2 |
 | Yarn    | 1.22.22  |
 
 ## イントロダクション
@@ -56,6 +57,11 @@ rails s
 - カート機能
 - 注文機能
 - ステータス機能
+
+## 設計図
+- [テーブル定義書](./assets_readme/table_ definition.pdf)
+- [ER図](./assets_readme/er.webp)
+- [アプリケーション詳細設計](./assets_readme/application_detailed_design.pdf)
 
 ## 得られたノウハウ
 - WBS（ProjectSheet planningの取り扱い）
